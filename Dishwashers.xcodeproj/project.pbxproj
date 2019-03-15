@@ -12,12 +12,14 @@
 		D547B561223C1D5B00BE6551 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D547B55F223C1D5B00BE6551 /* Main.storyboard */; };
 		D547B563223C1D5C00BE6551 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D547B562223C1D5C00BE6551 /* Assets.xcassets */; };
 		D547B566223C1D5C00BE6551 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D547B564223C1D5C00BE6551 /* LaunchScreen.storyboard */; };
-		D547B571223C1D5C00BE6551 /* DishwashersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D547B570223C1D5C00BE6551 /* DishwashersTests.swift */; };
 		D547B57C223C1D5C00BE6551 /* DishwashersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D547B57B223C1D5C00BE6551 /* DishwashersUITests.swift */; };
 		D547B593223C1F2E00BE6551 /* FeedProductItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D547B592223C1F2E00BE6551 /* FeedProductItem.swift */; };
 		D547B595223C1F3500BE6551 /* ProductItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D547B594223C1F3500BE6551 /* ProductItem.swift */; };
 		D547B597223C1F4800BE6551 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D547B596223C1F4800BE6551 /* ApiService.swift */; };
 		D547B599223C1F9F00BE6551 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D547B598223C1F9F00BE6551 /* ImageService.swift */; };
+		D547B59E223C221A00BE6551 /* ApiServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D547B59D223C221A00BE6551 /* ApiServiceTests.swift */; };
+		D547B5A0223C224300BE6551 /* ImageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D547B59F223C224300BE6551 /* ImageServiceTests.swift */; };
+		D547B5A2223C225900BE6551 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D547B5A1223C225900BE6551 /* ModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +48,6 @@
 		D547B565223C1D5C00BE6551 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D547B567223C1D5C00BE6551 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D547B56C223C1D5C00BE6551 /* DishwashersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DishwashersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D547B570223C1D5C00BE6551 /* DishwashersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishwashersTests.swift; sourceTree = "<group>"; };
 		D547B572223C1D5C00BE6551 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D547B577223C1D5C00BE6551 /* DishwashersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DishwashersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D547B57B223C1D5C00BE6551 /* DishwashersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishwashersUITests.swift; sourceTree = "<group>"; };
@@ -56,6 +57,9 @@
 		D547B594223C1F3500BE6551 /* ProductItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductItem.swift; sourceTree = "<group>"; };
 		D547B596223C1F4800BE6551 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		D547B598223C1F9F00BE6551 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		D547B59D223C221A00BE6551 /* ApiServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceTests.swift; sourceTree = "<group>"; };
+		D547B59F223C224300BE6551 /* ImageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServiceTests.swift; sourceTree = "<group>"; };
+		D547B5A1223C225900BE6551 /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +127,9 @@
 		D547B56F223C1D5C00BE6551 /* DishwashersTests */ = {
 			isa = PBXGroup;
 			children = (
-				D547B570223C1D5C00BE6551 /* DishwashersTests.swift */,
+				D547B59C223C220600BE6551 /* Tests */,
+				D547B59B223C21F200BE6551 /* Test Data */,
+				D547B59A223C21E500BE6551 /* Helper Classes */,
 				D547B572223C1D5C00BE6551 /* Info.plist */,
 			);
 			path = DishwashersTests;
@@ -201,6 +207,30 @@
 				D547B562223C1D5C00BE6551 /* Assets.xcassets */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		D547B59A223C21E500BE6551 /* Helper Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Helper Classes";
+			sourceTree = "<group>";
+		};
+		D547B59B223C21F200BE6551 /* Test Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Test Data";
+			sourceTree = "<group>";
+		};
+		D547B59C223C220600BE6551 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D547B59D223C221A00BE6551 /* ApiServiceTests.swift */,
+				D547B59F223C224300BE6551 /* ImageServiceTests.swift */,
+				D547B5A1223C225900BE6551 /* ModelTests.swift */,
+			);
+			name = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,7 +377,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D547B571223C1D5C00BE6551 /* DishwashersTests.swift in Sources */,
+				D547B59E223C221A00BE6551 /* ApiServiceTests.swift in Sources */,
+				D547B5A0223C224300BE6551 /* ImageServiceTests.swift in Sources */,
+				D547B5A2223C225900BE6551 /* ModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
