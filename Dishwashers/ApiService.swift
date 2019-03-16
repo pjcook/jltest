@@ -92,7 +92,7 @@ extension APIService {
     }
     
     private func buildProductDetailsURL(productID: String) -> URL? {
-        let url = "\(configuration.baseURL)/products/\(productID)?\(configuration.apiKey)"
+        let url = "\(configuration.baseURL)/products/\(productID)?key=\(configuration.apiKey)"
         return URL(string: url)
     }
 }

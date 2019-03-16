@@ -48,3 +48,16 @@ struct ProductItem: Codable {
     let additionalServices: ProductAdditionalServices
     let code: String
 }
+
+extension ProductItem {
+    static func processNetworkData(data: Data?) -> ProductItem? {
+        guard let data = data else { return nil }
+        let decoder = JSONDecoder()
+        do {
+            let results = try decoder.decode(ProductItem.self, from: data)
+            return results
+        } catch {
+            return nil
+        }
+    }
+}
