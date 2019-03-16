@@ -8,3 +8,4 @@
 • Only going with Unit Tests, not UI Tests also
 
 ## Additions if more time
+• The isValidResponse method in the APIService can be extended as much as you like to return more granular error reasons. For the case of this test I kept it very basic and simply either there was a valid 200 response otherwise all else failed generically.
