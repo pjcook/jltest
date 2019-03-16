@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISHWASHERS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wi-qx-J7D">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISHWASHERS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0wi-qx-J7D">
                                 <rect key="frame" x="16" y="315.5" width="343" height="36"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
@@ -30,7 +30,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0wi-qx-J7D" secondAttribute="trailing" constant="16" id="0Df-iU-JXj"/>
                             <constraint firstItem="0wi-qx-J7D" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="0RV-PU-8Y3"/>
                             <constraint firstItem="0wi-qx-J7D" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="8Fo-Gh-F8y"/>
-                            <constraint firstItem="0wi-qx-J7D" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Xr1-Hx-NbY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

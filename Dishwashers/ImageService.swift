@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+protocol ImageServiceProtocol {
+    func createDownloadImageTask(url: URL) -> URLSessionTask?
+}
+
+class ImageService: ImageServiceProtocol {
+    func createDownloadImageTask(url: URL) -> URLSessionTask? {
+        return nil
+    }
+}

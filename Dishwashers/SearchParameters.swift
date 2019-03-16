@@ -1,5 +1,5 @@
 //
-//  FeedProductItem.swift
+//  SearchParameters.swift
 //  Dishwashers
 //
 //  Created by PJ COOK on 15/03/2019.
@@ -8,6 +8,8 @@
 
 import Foundation
 
-struct FeedProductItem: Codable {
-    
+struct SearchParameters {
+    let pageSize = 20
+    let query = "dishwasher"
+    let pageNumber: Int
 }

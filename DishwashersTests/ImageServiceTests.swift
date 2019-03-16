@@ -10,9 +10,10 @@ import XCTest
 @testable import Dishwashers
 
 class ImageServiceTests: XCTestCase {
+    private var imageService: ImageServiceProtocol!
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        imageService = ImageService()
     }
 
     override func tearDown() {
