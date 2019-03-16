@@ -8,6 +8,15 @@
 
 import Foundation
 
+struct Price: Codable {
+    let was: String
+    let now: String
+    let currency: String
+}
+
 struct FeedProductItem: Codable {
-    
+    let productId: String
+    let price: Price
+    let title: String
+    let image: String
 }

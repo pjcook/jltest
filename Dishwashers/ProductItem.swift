@@ -8,6 +8,43 @@
 
 import Foundation
 
+struct FeatureAttribute: Codable {
+    let id: String
+    let name: String
+    let toolTip: String
+    let uom: String
+    let value: String
+}
+
+struct ProductFeature: Codable {
+    let attributes: [FeatureAttribute]
+}
+
+struct ProductAdditionalServices: Codable {
+    let includedServices: [String]
+}
+
+struct ProductDetails: Codable {
+    let productInformation: String
+    let features: [ProductFeature]
+}
+
+struct MediaImageDetails: Codable {
+    let altText: String
+    let urls: [String]
+}
+
+struct Media: Codable {
+    let images: MediaImageDetails
+}
+
 struct ProductItem: Codable {
-    
+    let productId: String
+    let title: String
+    let media: Media
+    let price: Price
+    let details: ProductDetails
+    let displaySpecialOffer: String
+    let additionalServices: ProductAdditionalServices
+    let code: String
 }

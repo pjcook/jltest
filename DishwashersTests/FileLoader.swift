@@ -6,20 +6,21 @@
 //  Copyright © 2019 Software101. All rights reserved.
 //
 
-import Foundation
+import XCTest
 
 class FileLoader {
     static func loadTestData(filename: String, withExtension: String = "json") -> Data? {
         guard let url = Bundle(for: FileLoader.self).url(forResource: filename, withExtension: withExtension) else {
-            fatalError("Missing file: \(filename).\(withExtension)")
+            XCTFail("Missing file: \(filename).\(withExtension)")
+            return nil
         }
+        
         do {
             let jsonData = try Data(contentsOf: url)
             return jsonData
         } catch {
-            fatalError("Failed to load file: \(filename).\(withExtension)")
+            XCTFail("Failed to load file: \(filename).\(withExtension)")
+            return nil
         }
-        
-        return nil
     }
 }
