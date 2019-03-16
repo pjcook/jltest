@@ -24,6 +24,7 @@ enum APIServiceResponse {
 protocol APIServiceProtocol {
     func searchFeed(search: SearchParameters, completionHandler: @escaping APIServiceCompletionHandler) -> URLSessionTask?
     func productDetails(productID: String, completionHandler: @escaping APIServiceCompletionHandler) -> URLSessionTask?
+    func downloadImage(url: URL, completionHandler: @escaping APIServiceCompletionHandler) -> URLSessionTask?
 }
 
 class APIService: APIServiceProtocol {
@@ -49,6 +50,11 @@ class APIService: APIServiceProtocol {
             completionHandler(.failure(APIServiceError.failedToBuildURL))
             return nil
         }
+        let task = executeTask(url: url, completionHandler: completionHandler)
+        return task
+    }
+    
+    func downloadImage(url: URL, completionHandler: @escaping APIServiceCompletionHandler) -> URLSessionTask? {
         let task = executeTask(url: url, completionHandler: completionHandler)
         return task
     }

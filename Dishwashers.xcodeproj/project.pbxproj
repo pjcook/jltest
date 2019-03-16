@@ -28,6 +28,7 @@
 		D547B5B2223D0D2C00BE6551 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D547B5B1223D0D2C00BE6551 /* MockURLSession.swift */; };
 		D547B5B6223D12CE00BE6551 /* FeedSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D547B5B5223D12CE00BE6551 /* FeedSearchResults.swift */; };
 		D547B5B8223D139100BE6551 /* single-feed-product.json in Resources */ = {isa = PBXBuildFile; fileRef = D547B5B7223D139100BE6551 /* single-feed-product.json */; };
+		D547B5BA223D40E300BE6551 /* Product Grid.PNG in Resources */ = {isa = PBXBuildFile; fileRef = D547B5B9223D40E300BE6551 /* Product Grid.PNG */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		D547B5B1223D0D2C00BE6551 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		D547B5B5223D12CE00BE6551 /* FeedSearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSearchResults.swift; sourceTree = "<group>"; };
 		D547B5B7223D139100BE6551 /* single-feed-product.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "single-feed-product.json"; sourceTree = "<group>"; };
+		D547B5B9223D40E300BE6551 /* Product Grid.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Product Grid.PNG"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +241,7 @@
 		D547B59B223C21F200BE6551 /* Test Data */ = {
 			isa = PBXGroup;
 			children = (
+				D547B5B9223D40E300BE6551 /* Product Grid.PNG */,
 				D547B5A7223CE5AE00BE6551 /* search-valid-response.json */,
 				D547B5A9223CE5D100BE6551 /* search-auth-error-response.json */,
 				D547B5B7223D139100BE6551 /* single-feed-product.json */,
@@ -373,6 +376,7 @@
 			files = (
 				D547B5AE223D09D500BE6551 /* product-search-response.json in Resources */,
 				D547B5A8223CE5AE00BE6551 /* search-valid-response.json in Resources */,
+				D547B5BA223D40E300BE6551 /* Product Grid.PNG in Resources */,
 				D547B5AC223D09AD00BE6551 /* product-search-invalid-productid-response.json in Resources */,
 				D547B5AA223CE5D100BE6551 /* search-auth-error-response.json in Resources */,
 				D547B5B8223D139100BE6551 /* single-feed-product.json in Resources */,

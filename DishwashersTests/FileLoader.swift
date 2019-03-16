@@ -9,8 +9,12 @@
 import XCTest
 
 class FileLoader {
+    static func url(forResource filename: String, withExtension: String) -> URL? {
+        return Bundle(for: FileLoader.self).url(forResource: filename, withExtension: withExtension)
+    }
+    
     static func loadTestData(filename: String, withExtension: String = "json") -> Data? {
-        guard let url = Bundle(for: FileLoader.self).url(forResource: filename, withExtension: withExtension) else {
+        guard let url = url(forResource: filename, withExtension: withExtension) else {
             XCTFail("Missing file: \(filename).\(withExtension)")
             return nil
         }

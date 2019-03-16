@@ -21,13 +21,16 @@ class ApiServiceTests: XCTestCase {
     }
 
     override func tearDown() {}
-    
+}
+
+// MARK:- searchFeed tests
+extension ApiServiceTests {
     func test_searchFeed_returns_task() {
         let parameters = SearchParameters(pageNumber: 1)
         let task = apiService.searchFeed(search: parameters) { _ in }
         XCTAssertNotNil(task)
     }
-
+    
     func test_searchFeed_from_api_success() {
         let expectation = self.expectation(description: "Wait for response")
         session.responseData = FileLoader.loadTestData(filename: "search-valid-response")
@@ -139,7 +142,10 @@ class ApiServiceTests: XCTestCase {
             }
         }
     }
-    
+}
+
+// MARK:- productDetails tests
+extension ApiServiceTests {
     func test_productDetails_returns_task() {
         let task = apiService.productDetails(productID: "abc") { _ in }
         XCTAssertNotNil(task)
@@ -248,6 +254,103 @@ class ApiServiceTests: XCTestCase {
                 XCTAssertEqual(error as! APIServiceError, .failedToBuildURL)
             case .success:
                 XCTFail()
+            }
+        }
+    }
+}
+
+// MARK:- downloadImage tests
+extension ApiServiceTests {
+    func test_download_valid_image() {
+        let expectation = self.expectation(description: "Wait for response")
+        let url = FileLoader.url(forResource: "Product Grid", withExtension: "PNG")!
+        session.responseData = FileLoader.loadTestData(filename: "Product Grid", withExtension: "PNG")
+        session.httpResponse = HTTPURLResponse(url: URL(string: configuration.baseURL)!, statusCode: 200, httpVersion: nil, headerFields: nil)
+        _ = apiService.downloadImage(url: url) { response in
+            expectation.fulfill()
+            switch response {
+            case .failure:
+                XCTFail()
+            case let .success(data):
+                XCTAssertNotNil(data)
+                if let data = data {
+                    let image = UIImage(data: data)
+                    XCTAssertNotNil(image)
+                }
+            }
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("\(error)")
+            }
+        }
+    }
+    
+    func test_download_image_no_image() {
+        let expectation = self.expectation(description: "Wait for response")
+        let url = FileLoader.url(forResource: "Product Grid", withExtension: "PNG")!
+        session.httpResponse = HTTPURLResponse(url: URL(string: configuration.baseURL)!, statusCode: 200, httpVersion: nil, headerFields: nil)
+        _ = apiService.downloadImage(url: url) { response in
+            expectation.fulfill()
+            switch response {
+            case .failure:
+                XCTFail()
+            case let .success(data):
+                XCTAssertNil(data)
+            }
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("\(error)")
+            }
+        }
+    }
+    
+    func test_download_image_with_server_error() {
+        let expectation = self.expectation(description: "Wait for response")
+        let url = FileLoader.url(forResource: "Product Grid", withExtension: "PNG")!
+        session.httpResponse = HTTPURLResponse(url: URL(string: configuration.baseURL)!, statusCode: 500, httpVersion: nil, headerFields: nil)
+        _ = apiService.downloadImage(url: url) { response in
+            expectation.fulfill()
+            switch response {
+            case let .failure(error):
+                XCTAssertEqual(error as! APIServiceError, .networkError)
+            case .success:
+                XCTFail()
+            }
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("\(error)")
+            }
+        }
+    }
+    
+    func test_download_image_invalid_data() {
+        let expectation = self.expectation(description: "Wait for response")
+        let url = FileLoader.url(forResource: "search-auth-error-response", withExtension: "json")!
+        session.responseData = FileLoader.loadTestData(filename: "search-auth-error-response")
+        session.httpResponse = HTTPURLResponse(url: URL(string: configuration.baseURL)!, statusCode: 200, httpVersion: nil, headerFields: nil)
+        _ = apiService.downloadImage(url: url) { response in
+            expectation.fulfill()
+            switch response {
+            case .failure:
+                XCTFail()
+            case let .success(data):
+                XCTAssertNotNil(data)
+                if let data = data {
+                    let image = UIImage(data: data)
+                    XCTAssertNil(image)
+                }
+            }
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("\(error)")
             }
         }
     }
