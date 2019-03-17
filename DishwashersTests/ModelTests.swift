@@ -59,6 +59,28 @@ class ModelTests: XCTestCase {
         XCTAssertNil(result)
     }
     
+    func test_locale_extension() {
+        let currencyCode = "GBP"
+        let locale = Locale.locale(from: currencyCode)
+        XCTAssertNotNil(locale)
+        XCTAssertEqual("£", locale?.currencySymbol)
+    }
+    
+    func test_locale_extension_cache() {
+        let currencyCode = "GBP"
+        let locale1 = Locale.locale(from: currencyCode)
+        let locale2 = Locale.locale(from: currencyCode)
+        XCTAssertNotNil(locale1)
+        XCTAssertEqual("£", locale1?.currencySymbol)
+        XCTAssertEqual(locale1, locale2)
+    }
+    
+    func test_locale_extension_with_invalid_currencyCode() {
+        let currencyCode = "XXX"
+        let locale = Locale.locale(from: currencyCode)
+        XCTAssertNil(locale)
+    }
+    
     func test_parse_productItem_processNetworkData_invalidData() {
         guard let data = FileLoader.loadTestData(filename: "search-auth-error-response") else {
             XCTFail("Failed to load test data")

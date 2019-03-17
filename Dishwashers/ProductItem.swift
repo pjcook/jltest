@@ -47,6 +47,17 @@ struct ProductItem: Codable {
     let displaySpecialOffer: String
     let additionalServices: ProductAdditionalServices
     let code: String
+    
+    init(with item: FeedProductItem) {
+        productId = item.productId
+        title = item.title
+        price = item.price
+        media = Media(images: MediaImageDetails(altText: "", urls: [item.image]))
+        details = ProductDetails(productInformation: "", features: [])
+        displaySpecialOffer = ""
+        additionalServices = ProductAdditionalServices(includedServices: [])
+        code = ""
+    }
 }
 
 extension ProductItem {
