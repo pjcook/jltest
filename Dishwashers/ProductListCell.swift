@@ -9,6 +9,8 @@
 import UIKit
 
 class ProductListCell: UICollectionViewCell {
+    static let identifier = "ProductListCell"
+    
     @IBOutlet private var productImage: UIImageView!
     @IBOutlet private var productTitle: UILabel!
     @IBOutlet private var productPrice: UILabel!

@@ -57,7 +57,7 @@ class ProductListViewModel {
     
     func didSelectItem(_ index: Int, viewController: UIViewController) {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: ProductListViewModel.self))
-        guard let detailViewController = storyboard.instantiateViewController(withIdentifier: String(describing: ProductDetailViewController.self)) as? ProductDetailViewController else {
+        guard let detailViewController = storyboard.instantiateViewController(withIdentifier: "ProductDetailViewController") as? ProductDetailViewController else {
             assertionFailure("Could not load ProductDetailViewController")
             return
         }

@@ -46,6 +46,8 @@
 		D547B5DF223DF5B700BE6551 /* ProductListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D547B5DE223DF5B700BE6551 /* ProductListViewControllerTests.swift */; };
 		D547B5E1223DF5C400BE6551 /* ProductListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D547B5E0223DF5C400BE6551 /* ProductListViewModelTests.swift */; };
 		D547B5E3223DF5D100BE6551 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D547B5E2223DF5D100BE6551 /* ViewControllerTests.swift */; };
+		D547B5E6223DF82400BE6551 /* ProductListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D547B5E5223DF82400BE6551 /* ProductListCell.xib */; };
+		D547B5E8223DF95300BE6551 /* UIView+NibLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = D547B5E7223DF95300BE6551 /* UIView+NibLoading.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,8 @@
 		D547B5DE223DF5B700BE6551 /* ProductListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewControllerTests.swift; sourceTree = "<group>"; };
 		D547B5E0223DF5C400BE6551 /* ProductListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModelTests.swift; sourceTree = "<group>"; };
 		D547B5E2223DF5D100BE6551 /* ViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
+		D547B5E5223DF82400BE6551 /* ProductListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductListCell.xib; sourceTree = "<group>"; };
+		D547B5E7223DF95300BE6551 /* UIView+NibLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NibLoading.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +185,7 @@
 		D547B56F223C1D5C00BE6551 /* DishwashersTests */ = {
 			isa = PBXGroup;
 			children = (
+				D547B5E4223DF80800BE6551 /* Xibs */,
 				D547B59C223C220600BE6551 /* Tests */,
 				D547B59B223C21F200BE6551 /* Test Data */,
 				D547B59A223C21E500BE6551 /* Helper Classes */,
@@ -240,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				D547B5D2223DE9E300BE6551 /* Locale+Additions.swift */,
+				D547B5E7223DF95300BE6551 /* UIView+NibLoading.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -317,6 +323,14 @@
 				D547B5D4223DEBE800BE6551 /* ProductDetailViewModel.swift */,
 			);
 			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		D547B5E4223DF80800BE6551 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				D547B5E5223DF82400BE6551 /* ProductListCell.xib */,
+			);
+			name = Xibs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,6 +454,7 @@
 				D547B5AC223D09AD00BE6551 /* product-search-invalid-productid-response.json in Resources */,
 				D547B5AA223CE5D100BE6551 /* search-auth-error-response.json in Resources */,
 				D547B5B8223D139100BE6551 /* single-feed-product.json in Resources */,
+				D547B5E6223DF82400BE6551 /* ProductListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +479,7 @@
 				D547B5C0223D43D000BE6551 /* ProductListCell.swift in Sources */,
 				D547B5D5223DEBE800BE6551 /* ProductDetailViewModel.swift in Sources */,
 				D547B597223C1F4800BE6551 /* ApiService.swift in Sources */,
+				D547B5E8223DF95300BE6551 /* UIView+NibLoading.swift in Sources */,
 				D547B5A4223C282700BE6551 /* Configuration.swift in Sources */,
 				D547B5A6223C29F600BE6551 /* SearchParameters.swift in Sources */,
 				D547B5CD223DDA0900BE6551 /* ProductListCellViewModel.swift in Sources */,

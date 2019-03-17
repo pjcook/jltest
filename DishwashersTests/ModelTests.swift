@@ -9,13 +9,44 @@
 import XCTest
 @testable import Dishwashers
 
-class ModelTests: XCTestCase {
+class ModelTests: XCTestCase {}
+
+// MARK:- Locale extension tests
+extension ModelTests {
+    func test_locale_extension() {
+        let currencyCode = "GBP"
+        let locale = Locale.locale(from: currencyCode)
+        XCTAssertNotNil(locale)
+        XCTAssertEqual("£", locale?.currencySymbol)
+    }
+    
+    func test_locale_extension_cache() {
+        let currencyCode = "GBP"
+        let locale1 = Locale.locale(from: currencyCode)
+        let locale2 = Locale.locale(from: currencyCode)
+        XCTAssertNotNil(locale1)
+        XCTAssertEqual("£", locale1?.currencySymbol)
+        XCTAssertEqual(locale1, locale2)
+    }
+    
+    func test_locale_extension_with_invalid_currencyCode() {
+        let currencyCode = "XXX"
+        let locale = Locale.locale(from: currencyCode)
+        XCTAssertNil(locale)
+    }
+}
+
+// MARK:- SearchParameters tests
+extension ModelTests {
     func test_searchParameters() {
         let page1 = SearchParameters.firstPage()
         let page2 = page1.nextPage()
         XCTAssertEqual(page1.pageNumber + 1, page2.pageNumber)
     }
-    
+}
+
+// MARK:- FeedSearchResults tests
+extension ModelTests {
     func test_feedSearchResults_processNetworkData_nil_data() {
         let results = FeedSearchResults.processNetworkData(data: nil)
         XCTAssertNil(results)
@@ -30,7 +61,7 @@ class ModelTests: XCTestCase {
         let results = FeedSearchResults.processNetworkData(data: data)
         XCTAssertNil(results)
     }
-
+    
     func test_parse_feedSearchResults_data() {
         guard let data = FileLoader.loadTestData(filename: "search-valid-response") else {
             XCTFail("Failed to load test data")
@@ -53,32 +84,13 @@ class ModelTests: XCTestCase {
         XCTAssertEqual("660.00", product.price.now)
         XCTAssertEqual("GBP", product.price.currency)
     }
-    
+}
+
+// MARK:- ProductItem tests
+extension ModelTests {
     func test_parse_productItem_processNetworkData_nil_data() {
         let result = ProductItem.processNetworkData(data: nil)
         XCTAssertNil(result)
-    }
-    
-    func test_locale_extension() {
-        let currencyCode = "GBP"
-        let locale = Locale.locale(from: currencyCode)
-        XCTAssertNotNil(locale)
-        XCTAssertEqual("£", locale?.currencySymbol)
-    }
-    
-    func test_locale_extension_cache() {
-        let currencyCode = "GBP"
-        let locale1 = Locale.locale(from: currencyCode)
-        let locale2 = Locale.locale(from: currencyCode)
-        XCTAssertNotNil(locale1)
-        XCTAssertEqual("£", locale1?.currencySymbol)
-        XCTAssertEqual(locale1, locale2)
-    }
-    
-    func test_locale_extension_with_invalid_currencyCode() {
-        let currencyCode = "XXX"
-        let locale = Locale.locale(from: currencyCode)
-        XCTAssertNil(locale)
     }
     
     func test_parse_productItem_processNetworkData_invalidData() {
@@ -112,6 +124,23 @@ class ModelTests: XCTestCase {
         XCTAssertEqual(1, product.details.features.count)
         XCTAssertEqual("Claim Â£50 cashback (via redemption)", product.displaySpecialOffer)
         XCTAssertEqual(1, product.additionalServices.includedServices.count)
-        XCTAssertEqual("88701324", product.code)    }
-
+        XCTAssertEqual("88701324", product.code)
+    }
+    
+    func test_productItem_from_feedProductItem() {
+        guard let data = FileLoader.loadTestData(filename: "search-valid-response") else {
+            XCTFail("Failed to load test data")
+            return
+        }
+        
+        guard let results = FeedSearchResults.processNetworkData(data: data), let productItem = results.products.first else {
+            XCTFail("Failed to create FeedProductItem")
+            return
+        }
+        
+        let product = ProductItem(with: productItem)
+        XCTAssertEqual(product.productId, productItem.productId)
+        XCTAssertEqual(product.title, productItem.title)
+        XCTAssertEqual(product.media.images.urls.first!, productItem.image)
+    }
 }
