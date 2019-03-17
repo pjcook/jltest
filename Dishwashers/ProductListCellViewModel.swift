@@ -14,7 +14,9 @@ struct ProductListCellViewData {
     let isLoadingImage: Bool
     var price: String {
         guard !item.price.now.isEmpty, let price = Double(item.price.now) else { return "" }
-        let locale = Locale.locale(from: item.price.currency)
+        guard let locale = Locale.locale(from: item.price.currency) else {
+            return item.price.now
+        }
         
         let numberFormatter = NumberFormatter()
         numberFormatter.locale = locale
