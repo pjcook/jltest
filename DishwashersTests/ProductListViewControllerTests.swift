@@ -38,20 +38,13 @@ class MockProductListViewModel: ProductListViewModel {
 class ProductListViewControllerTests: XCTestCase {
     private var viewModel: MockProductListViewModel!
     private var viewController: ProductListViewController!
-    private var apiService: APIServiceProtocol!
-    private var configuration: Configuration!
-    private var session: MockURLSession!
-    private var pendingExpectation: XCTestExpectation?
+    private var testsViewModel = TestsBasicViewModel()
     
     override func setUp() {
-        configuration = Configuration()
-        session = MockURLSession()
-        apiService = APIService(configuration: configuration, session: session)
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "ProductListViewController") as! ProductListViewController
         viewController = vc
-        viewModel = MockProductListViewModel(apiService: apiService)
+        viewModel = MockProductListViewModel(apiService: testsViewModel.apiService)
         viewController.viewModel = viewModel
         viewController.viewModel.delegate = viewController
     }
@@ -67,9 +60,9 @@ class ProductListViewControllerTests: XCTestCase {
     
     func test_viewController_loading_page_data() {
         let expectation = self.expectation(description: "Wait for response")
-        session.responseData = FileLoader.loadTestData(filename: "search-valid-response")
-        session.httpResponse = HTTPURLResponse(url: URL(string: configuration.baseURL)!, statusCode: 200, httpVersion: nil, headerFields: nil)
-        pendingExpectation = expectation
+        testsViewModel.session.responseData = TestData.searchValidResponse()
+        testsViewModel.session.httpResponse = TestHTTPResponses.valid()
+        testsViewModel.pendingExpectation = expectation
         
         // cause viewDidLoad to be called
         _ = viewController.view
@@ -82,8 +75,8 @@ class ProductListViewControllerTests: XCTestCase {
         }
         
         viewController.reloadViewData()
-        XCTAssertTrue(session.taskComplete)
-        XCTAssertFalse(session.taskCompleteWithError)
+        XCTAssertTrue(testsViewModel.session.taskComplete)
+        XCTAssertFalse(testsViewModel.session.taskCompleteWithError)
         XCTAssertTrue(viewModel.loadPageCalled)
         
         let collectionViewItemCount = viewController.collectionView(viewController.collectionView, numberOfItemsInSection: 0)
@@ -98,9 +91,9 @@ class ProductListViewControllerTests: XCTestCase {
     
     func test_viewController_loading_cell_with_data() {
         let expectation = self.expectation(description: "Wait for response")
-        session.responseData = FileLoader.loadTestData(filename: "search-valid-response")
-        session.httpResponse = HTTPURLResponse(url: URL(string: configuration.baseURL)!, statusCode: 200, httpVersion: nil, headerFields: nil)
-        pendingExpectation = expectation
+        testsViewModel.session.responseData = TestData.searchValidResponse()
+        testsViewModel.session.httpResponse = TestHTTPResponses.valid()
+        testsViewModel.pendingExpectation = expectation
         
         // cause viewDidLoad to be called
         _ = viewController.view
@@ -124,9 +117,9 @@ class ProductListViewControllerTests: XCTestCase {
     
     func test_viewController_select_cell_with_data() {
         let expectation = self.expectation(description: "Wait for response")
-        session.responseData = FileLoader.loadTestData(filename: "search-valid-response")
-        session.httpResponse = HTTPURLResponse(url: URL(string: configuration.baseURL)!, statusCode: 200, httpVersion: nil, headerFields: nil)
-        pendingExpectation = expectation
+        testsViewModel.session.responseData = TestData.searchValidResponse()
+        testsViewModel.session.httpResponse = TestHTTPResponses.valid()
+        testsViewModel.pendingExpectation = expectation
         
         // cause viewDidLoad to be called
         _ = viewController.view
@@ -146,9 +139,9 @@ class ProductListViewControllerTests: XCTestCase {
     
     func test_viewModel_loadPage_doesnt_load_while_already_loading() {
         let expectation = self.expectation(description: "Wait for response")
-        session.responseData = FileLoader.loadTestData(filename: "search-valid-response")
-        session.httpResponse = HTTPURLResponse(url: URL(string: configuration.baseURL)!, statusCode: 200, httpVersion: nil, headerFields: nil)
-        pendingExpectation = expectation
+        testsViewModel.session.responseData = TestData.searchValidResponse()
+        testsViewModel.session.httpResponse = TestHTTPResponses.valid()
+        testsViewModel.pendingExpectation = expectation
         
         _ = viewController.view
         viewModel.delegate = self
@@ -166,7 +159,7 @@ class ProductListViewControllerTests: XCTestCase {
 
 extension ProductListViewControllerTests: ViewModelDelegate {
     func reloadViewData() {
-        pendingExpectation?.fulfill()
-        pendingExpectation = nil
+        testsViewModel.pendingExpectation?.fulfill()
+        testsViewModel.pendingExpectation = nil
     }
 }

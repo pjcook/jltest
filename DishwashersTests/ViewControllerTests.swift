@@ -11,20 +11,13 @@ import XCTest
 
 class ViewControllerTests: XCTestCase {
     private var viewController: ViewController!
-    private var apiService: APIServiceProtocol!
-    private var configuration: Configuration!
-    private var session: MockURLSession!
-    private var pendingExpectation: XCTestExpectation?
+    private var testsViewModel = TestsBasicViewModel()
     
     override func setUp() {
-        configuration = Configuration()
-        session = MockURLSession()
-        apiService = APIService(configuration: configuration, session: session)
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
         viewController = vc
-        viewController.apiService = apiService
+        viewController.apiService = testsViewModel.apiService
         
         let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
         window.makeKeyAndVisible()
@@ -35,9 +28,9 @@ class ViewControllerTests: XCTestCase {
 
     func test_load_viewController() {
         let expectation = self.expectation(description: "Wait for response")
-        session.responseData = FileLoader.loadTestData(filename: "search-valid-response")
-        session.httpResponse = HTTPURLResponse(url: URL(string: configuration.baseURL)!, statusCode: 200, httpVersion: nil, headerFields: nil)
-        pendingExpectation = expectation
+        testsViewModel.session.responseData = TestData.searchValidResponse()
+        testsViewModel.session.httpResponse = TestHTTPResponses.valid()
+        testsViewModel.pendingExpectation = expectation
         
         let view = viewController.view
         viewController.viewDidAppear(false)
@@ -65,7 +58,7 @@ class ViewControllerTests: XCTestCase {
 
 extension ViewControllerTests: ViewModelDelegate {
     func reloadViewData() {
-        pendingExpectation?.fulfill()
-        pendingExpectation = nil
+        testsViewModel.pendingExpectation?.fulfill()
+        testsViewModel.pendingExpectation = nil
     }
 }

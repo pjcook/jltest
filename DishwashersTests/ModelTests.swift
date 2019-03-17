@@ -53,25 +53,13 @@ extension ModelTests {
     }
     
     func test_feedSearchResults_processNetworkData_invalidData() {
-        guard let data = FileLoader.loadTestData(filename: "search-auth-error-response") else {
-            XCTFail("Failed to load test data")
-            return
-        }
-        
+        let data = TestData.searchAuthError()
         let results = FeedSearchResults.processNetworkData(data: data)
         XCTAssertNil(results)
     }
     
     func test_parse_feedSearchResults_data() {
-        guard let data = FileLoader.loadTestData(filename: "search-valid-response") else {
-            XCTFail("Failed to load test data")
-            return
-        }
-        
-        let results = FeedSearchResults.processNetworkData(data: data)
-        XCTAssertNotNil(results)
-        
-        guard let searchResults = results else { return }
+        let searchResults = TestDataLoader.feedSearchResults()
         XCTAssertEqual(189, searchResults.results)
         XCTAssertEqual(10, searchResults.pagesAvailable)
         XCTAssertEqual(20, searchResults.products.count)
@@ -94,25 +82,13 @@ extension ModelTests {
     }
     
     func test_parse_productItem_processNetworkData_invalidData() {
-        guard let data = FileLoader.loadTestData(filename: "search-auth-error-response") else {
-            XCTFail("Failed to load test data")
-            return
-        }
-        
+        let data = TestData.searchAuthError()
         let result = ProductItem.processNetworkData(data: data)
         XCTAssertNil(result)
     }
     
     func test_parse_productItem_data() {
-        guard let data = FileLoader.loadTestData(filename: "product-search-response") else {
-            XCTFail("Failed to load test data")
-            return
-        }
-        
-        let result = ProductItem.processNetworkData(data: data)
-        XCTAssertNotNil(result)
-        
-        guard let product = result else { return }
+        let product = TestDataLoader.validProductItem()
         
         XCTAssertEqual("3294410", product.productId)
         XCTAssertEqual("Neff S513M60X1G Integrated Dishwasher, Stainless Steel", product.title)
@@ -128,16 +104,7 @@ extension ModelTests {
     }
     
     func test_productItem_from_feedProductItem() {
-        guard let data = FileLoader.loadTestData(filename: "search-valid-response") else {
-            XCTFail("Failed to load test data")
-            return
-        }
-        
-        guard let results = FeedSearchResults.processNetworkData(data: data), let productItem = results.products.first else {
-            XCTFail("Failed to create FeedProductItem")
-            return
-        }
-        
+        let productItem = TestDataLoader.validFeedProductItem()
         let product = ProductItem(with: productItem)
         XCTAssertEqual(product.productId, productItem.productId)
         XCTAssertEqual(product.title, productItem.title)

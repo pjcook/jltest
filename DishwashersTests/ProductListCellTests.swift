@@ -26,15 +26,9 @@ class MockProductListCellViewModel: ProductListCellViewModel {
 
 class ProductListCellTests: XCTestCase {
     private var cell: ProductListCell!
-    private var apiService: APIServiceProtocol!
-    private var configuration: Configuration!
-    private var session: MockURLSession!
+    private var testsViewModel = TestsBasicViewModel()
     
     override func setUp() {
-        configuration = Configuration()
-        session = MockURLSession()
-        apiService = APIService(configuration: configuration, session: session)
-
         cell = ProductListCell()
         cell.xibSetup(nibName: "ProductListCell", bundle: Bundle(for: ProductListCellTests.self))
     }
@@ -49,15 +43,9 @@ class ProductListCellTests: XCTestCase {
     }
     
     func test_configure_cell() {
-        guard let data = FileLoader.loadTestData(filename: "search-valid-response"),
-            let productItem = FeedSearchResults.processNetworkData(data: data)?.products.first
-        else {
-            XCTFail("Failed to load test data")
-            return
-        }
-        
+        let productItem = TestDataLoader.validFeedProductItem()
         let viewData = ProductListCellViewData(item: productItem, image: nil, isLoadingImage: false)
-        let viewModel = ProductListCellViewModel(viewData: viewData, apiService: apiService)
+        let viewModel = ProductListCellViewModel(viewData: viewData, apiService: testsViewModel.apiService)
         cell.configure(viewModel: viewModel)
         XCTAssertEqual(cell.productTitle.text, productItem.title)
         XCTAssertEqual(cell.productPrice.text, viewData.price)
@@ -65,19 +53,14 @@ class ProductListCellTests: XCTestCase {
     }
     
     func test_configure_cell_load_image() {
-        guard let data = FileLoader.loadTestData(filename: "search-valid-response"),
-            let productItem = FeedSearchResults.processNetworkData(data: data)?.products.first
-            else {
-                XCTFail("Failed to load test data")
-                return
-        }
+        let productItem = TestDataLoader.validFeedProductItem()
         let expectation = self.expectation(description: "Wait for response")
-        session.responseData = FileLoader.loadTestData(filename: "Product Grid", withExtension: "PNG")
-        session.httpResponse = HTTPURLResponse(url: URL(string: configuration.baseURL)!, statusCode: 200, httpVersion: nil, headerFields: nil)
-        session.testExpectation = expectation
+        testsViewModel.session.responseData = TestData.validImageData()
+        testsViewModel.session.httpResponse = TestHTTPResponses.valid()
+        testsViewModel.session.testExpectation = expectation
         
         let viewData = ProductListCellViewData(item: productItem, image: nil, isLoadingImage: false)
-        let viewModel = MockProductListCellViewModel(viewData: viewData, apiService: apiService)
+        let viewModel = MockProductListCellViewModel(viewData: viewData, apiService: testsViewModel.apiService)
         cell.configure(viewModel: viewModel)
         
         waitForExpectations(timeout: 1) { error in
@@ -88,26 +71,26 @@ class ProductListCellTests: XCTestCase {
         
         XCTAssertEqual(cell.productTitle.text, productItem.title)
         XCTAssertEqual(cell.productPrice.text, viewData.price)
-        XCTAssertTrue(session.taskComplete)
-        XCTAssertFalse(session.taskCompleteWithError)
+        XCTAssertTrue(testsViewModel.session.taskComplete)
+        XCTAssertFalse(testsViewModel.session.taskCompleteWithError)
         XCTAssertTrue(viewModel.loadImageCalled)
     }
     
     func test_prepareForReuse() {
         let productItem = FeedProductItem(productId: "abc", price: Price(was: "", now: "", currency: ""), title: "title", image: "")
-        session.responseData = FileLoader.loadTestData(filename: "Product Grid", withExtension: "PNG")
-        session.httpResponse = HTTPURLResponse(url: URL(string: configuration.baseURL)!, statusCode: 200, httpVersion: nil, headerFields: nil)
+        testsViewModel.session.responseData = TestData.validImageData()
+        testsViewModel.session.httpResponse = TestHTTPResponses.valid()
         
         let viewData = ProductListCellViewData(item: productItem, image: nil, isLoadingImage: false)
-        let viewModel = MockProductListCellViewModel(viewData: viewData, apiService: apiService)
+        let viewModel = MockProductListCellViewModel(viewData: viewData, apiService: testsViewModel.apiService)
         cell.configure(viewModel: viewModel)
         cell.prepareForReuse()
         
         XCTAssertNil(cell.productTitle.text)
         XCTAssertNil(cell.productPrice.text)
         XCTAssertNil(cell.productImage.image)
-        XCTAssertFalse(session.taskComplete)
-        XCTAssertFalse(session.taskCompleteWithError)
+        XCTAssertFalse(testsViewModel.session.taskComplete)
+        XCTAssertFalse(testsViewModel.session.taskCompleteWithError)
         XCTAssertTrue(viewModel.prepareForReuseCalled)
     }
     
