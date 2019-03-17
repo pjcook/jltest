@@ -9,26 +9,164 @@
 import XCTest
 @testable import Dishwashers
 
-class ProductListViewControllerTests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+class MockProductListViewModel: ProductListViewModel {
+    var loadPageCalled = false
+    var loadPageCalledCount = 0
+    var viewModelForCellCalled = false
+    var didSelectItemCalled = false
+    
+    override func loadPage() {
+        loadPageCalled = true
+        let currentlyLoading = viewData.isLoading
+        super.loadPage()
+        if !currentlyLoading && viewData.isLoading {
+            loadPageCalledCount += 1
         }
     }
+    
+    override func viewModelForCell(at index: Int) -> ProductListCellViewModel {
+        viewModelForCellCalled = true
+        return super.viewModelForCell(at: index)
+    }
+    
+    override func didSelectItem(_ index: Int, viewController: UIViewController) {
+        didSelectItemCalled = true
+        super.didSelectItem(index, viewController: viewController)
+    }
+}
 
+class ProductListViewControllerTests: XCTestCase {
+    private var viewModel: MockProductListViewModel!
+    private var viewController: ProductListViewController!
+    private var apiService: APIServiceProtocol!
+    private var configuration: Configuration!
+    private var session: MockURLSession!
+    private var pendingExpectation: XCTestExpectation?
+    
+    override func setUp() {
+        configuration = Configuration()
+        session = MockURLSession()
+        apiService = APIService(configuration: configuration, session: session)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ProductListViewController") as! ProductListViewController
+        viewController = vc
+        viewModel = MockProductListViewModel(apiService: apiService)
+        viewController.viewModel = viewModel
+        viewController.viewModel.delegate = viewController
+    }
+    
+    override func tearDown() {}
+
+    func test_viewController_not_nil() {
+        XCTAssertNotNil(viewController)
+        XCTAssertNotNil(viewController.view)
+        XCTAssertNotNil(viewController.viewModel.delegate)
+        XCTAssertTrue(viewModel.loadPageCalled)
+    }
+    
+    func test_viewController_loading_page_data() {
+        let expectation = self.expectation(description: "Wait for response")
+        session.responseData = FileLoader.loadTestData(filename: "search-valid-response")
+        session.httpResponse = HTTPURLResponse(url: URL(string: configuration.baseURL)!, statusCode: 200, httpVersion: nil, headerFields: nil)
+        pendingExpectation = expectation
+        
+        // cause viewDidLoad to be called
+        _ = viewController.view
+        viewModel.delegate = self
+
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("\(error)")
+            }
+        }
+        
+        viewController.reloadViewData()
+        XCTAssertTrue(session.taskComplete)
+        XCTAssertFalse(session.taskCompleteWithError)
+        XCTAssertTrue(viewModel.loadPageCalled)
+        
+        let collectionViewItemCount = viewController.collectionView(viewController.collectionView, numberOfItemsInSection: 0)
+        XCTAssertEqual(collectionViewItemCount, 20)
+    }
+    
+    func test_viewController_numberOfSections() {
+        _ = viewController.view
+        let numberOfSections = viewController.numberOfSections(in: viewController.collectionView)
+        XCTAssertEqual(numberOfSections, 1)
+    }
+    
+    func test_viewController_loading_cell_with_data() {
+        let expectation = self.expectation(description: "Wait for response")
+        session.responseData = FileLoader.loadTestData(filename: "search-valid-response")
+        session.httpResponse = HTTPURLResponse(url: URL(string: configuration.baseURL)!, statusCode: 200, httpVersion: nil, headerFields: nil)
+        pendingExpectation = expectation
+        
+        // cause viewDidLoad to be called
+        _ = viewController.view
+        viewModel.delegate = self
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("\(error)")
+            }
+        }
+        
+        viewController.reloadViewData()
+        let indexPath = IndexPath(row: 0, section: 0)
+        let cell = viewController.collectionView(viewController.collectionView, cellForItemAt: indexPath) as! ProductListCell
+        XCTAssertNotNil(cell)
+        XCTAssertTrue(viewModel.viewModelForCellCalled)
+        
+        let productItem = viewModel.viewData.productItems[indexPath.row]
+        XCTAssertEqual(cell.productTitle.text, productItem.title)
+    }
+    
+    func test_viewController_select_cell_with_data() {
+        let expectation = self.expectation(description: "Wait for response")
+        session.responseData = FileLoader.loadTestData(filename: "search-valid-response")
+        session.httpResponse = HTTPURLResponse(url: URL(string: configuration.baseURL)!, statusCode: 200, httpVersion: nil, headerFields: nil)
+        pendingExpectation = expectation
+        
+        // cause viewDidLoad to be called
+        _ = viewController.view
+        viewModel.delegate = self
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("\(error)")
+            }
+        }
+        
+        viewController.reloadViewData()
+        let indexPath = IndexPath(row: 0, section: 0)
+        viewController.collectionView(viewController.collectionView, didSelectItemAt: indexPath)
+        XCTAssertTrue(viewModel.didSelectItemCalled)
+    }
+    
+    func test_viewModel_loadPage_doesnt_load_while_already_loading() {
+        let expectation = self.expectation(description: "Wait for response")
+        session.responseData = FileLoader.loadTestData(filename: "search-valid-response")
+        session.httpResponse = HTTPURLResponse(url: URL(string: configuration.baseURL)!, statusCode: 200, httpVersion: nil, headerFields: nil)
+        pendingExpectation = expectation
+        
+        _ = viewController.view
+        viewModel.delegate = self
+        viewModel.loadPage()
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("\(error)")
+            }
+        }
+        
+        XCTAssertEqual(1, viewModel.loadPageCalledCount)
+    }
+}
+
+extension ProductListViewControllerTests: ViewModelDelegate {
+    func reloadViewData() {
+        pendingExpectation?.fulfill()
+        pendingExpectation = nil
+    }
 }

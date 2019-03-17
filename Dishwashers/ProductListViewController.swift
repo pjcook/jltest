@@ -9,8 +9,8 @@
 import UIKit
 
 class ProductListViewController: UIViewController {
-    @IBOutlet private var collectionView: UICollectionView!
-    @IBOutlet private var loadingLabel: UILabel!
+    @IBOutlet private(set) var collectionView: UICollectionView!
+    @IBOutlet private(set) var loadingLabel: UILabel!
     
     var viewModel: ProductListViewModel!
         

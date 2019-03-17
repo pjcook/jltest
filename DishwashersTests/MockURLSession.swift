@@ -37,8 +37,8 @@ class MockURLSession: URLSession {
         DispatchQueue.main.async {
             self.taskComplete = true
             self.taskCompleteWithError = self.responseError != nil
-            self.testExpectation?.fulfill()
             completionHandler(self.responseData, self.httpResponse, self.responseError)
+            self.testExpectation?.fulfill()
         }
         return MockURLSessionDataTask()
     }

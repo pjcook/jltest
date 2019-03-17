@@ -9,12 +9,14 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var apiService: APIServiceProtocol = APIService(configuration: Configuration(), session: URLSession(configuration: .default))
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard
             let nc = segue.destination as? UINavigationController,
             let vc = nc.viewControllers.first as? ProductListViewController
         else { return }
-        vc.viewModel = ProductListViewModel(apiService: APIService(configuration: Configuration(), session: URLSession(configuration: .default)))
+        vc.viewModel = ProductListViewModel(apiService: apiService)
         vc.viewModel.delegate = vc
     }
     
