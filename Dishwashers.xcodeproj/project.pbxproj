@@ -60,6 +60,8 @@
 		D56D9E212240ED6600EB9FC1 /* ProductDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D56D9E202240ED6600EB9FC1 /* ProductDetail.storyboard */; };
 		D56D9E252241218600EB9FC1 /* StylesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56D9E242241218600EB9FC1 /* StylesTests.swift */; };
 		D56D9E28224123FC00EB9FC1 /* ProductListCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56D9E27224123FC00EB9FC1 /* ProductListCollectionLayout.swift */; };
+		D56D9E2B22414E1500EB9FC1 /* ImageGalleryCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56D9E2A22414E1500EB9FC1 /* ImageGalleryCellTests.swift */; };
+		D56D9E2D2241517400EB9FC1 /* ImageGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D56D9E2C2241517400EB9FC1 /* ImageGalleryCell.xib */; };
 		D5FF079B2240081600FFEA39 /* product-search-response2.json in Resources */ = {isa = PBXBuildFile; fileRef = D5FF079A2240081600FFEA39 /* product-search-response2.json */; };
 		D5FF079D2240094000FFEA39 /* ImageGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF079C2240094000FFEA39 /* ImageGalleryView.swift */; };
 		D5FF079F22400F7500FFEA39 /* ImageGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF079E22400F7500FFEA39 /* ImageGalleryCell.swift */; };
@@ -146,6 +148,8 @@
 		D56D9E202240ED6600EB9FC1 /* ProductDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProductDetail.storyboard; sourceTree = "<group>"; };
 		D56D9E242241218600EB9FC1 /* StylesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StylesTests.swift; sourceTree = "<group>"; };
 		D56D9E27224123FC00EB9FC1 /* ProductListCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListCollectionLayout.swift; sourceTree = "<group>"; };
+		D56D9E2A22414E1500EB9FC1 /* ImageGalleryCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryCellTests.swift; sourceTree = "<group>"; };
+		D56D9E2C2241517400EB9FC1 /* ImageGalleryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageGalleryCell.xib; sourceTree = "<group>"; };
 		D5FF079A2240081600FFEA39 /* product-search-response2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "product-search-response2.json"; sourceTree = "<group>"; };
 		D5FF079C2240094000FFEA39 /* ImageGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryView.swift; sourceTree = "<group>"; };
 		D5FF079E22400F7500FFEA39 /* ImageGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryCell.swift; sourceTree = "<group>"; };
@@ -363,6 +367,7 @@
 				D547B5D6223DF57200BE6551 /* ProductDetailViewControllerTests.swift */,
 				D547B5E2223DF5D100BE6551 /* ViewControllerTests.swift */,
 				D56D9E242241218600EB9FC1 /* StylesTests.swift */,
+				D56D9E2A22414E1500EB9FC1 /* ImageGalleryCellTests.swift */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -383,6 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				D547B5E5223DF82400BE6551 /* ProductListCell.xib */,
+				D56D9E2C2241517400EB9FC1 /* ImageGalleryCell.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -523,6 +529,7 @@
 				D547B5AC223D09AD00BE6551 /* product-search-invalid-productid-response.json in Resources */,
 				D547B5AA223CE5D100BE6551 /* search-auth-error-response.json in Resources */,
 				D547B5B8223D139100BE6551 /* single-feed-product.json in Resources */,
+				D56D9E2D2241517400EB9FC1 /* ImageGalleryCell.xib in Resources */,
 				D547B5E6223DF82400BE6551 /* ProductListCell.xib in Resources */,
 				D5FF079B2240081600FFEA39 /* product-search-response2.json in Resources */,
 			);
@@ -577,6 +584,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D56D9E2B22414E1500EB9FC1 /* ImageGalleryCellTests.swift in Sources */,
 				D547B5D7223DF57200BE6551 /* ProductDetailViewControllerTests.swift in Sources */,
 				D56D9E252241218600EB9FC1 /* StylesTests.swift in Sources */,
 				D547B5E3223DF5D100BE6551 /* ViewControllerTests.swift in Sources */,

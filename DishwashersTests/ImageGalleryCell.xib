@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageGalleryCell" customModule="Dishwashers">
+            <connections>
+                <outlet property="productImage" destination="AJ0-cx-E5U" id="4dc-NN-Spw"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageGalleryCell" id="rOk-cO-LIc" customClass="ImageGalleryCell" customModule="Dishwashers">
+            <rect key="frame" x="0.0" y="0.0" width="540" height="660"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="540" height="660"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AJ0-cx-E5U">
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="660"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="AJ0-cx-E5U" firstAttribute="leading" secondItem="rOk-cO-LIc" secondAttribute="leading" id="BwG-Ds-pZi"/>
+                <constraint firstAttribute="bottom" secondItem="AJ0-cx-E5U" secondAttribute="bottom" id="VXR-cl-nwR"/>
+                <constraint firstAttribute="trailing" secondItem="AJ0-cx-E5U" secondAttribute="trailing" id="h5m-rm-Qvv"/>
+                <constraint firstItem="AJ0-cx-E5U" firstAttribute="top" secondItem="rOk-cO-LIc" secondAttribute="top" id="hw8-Rf-I1J"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="eod-ef-sUW"/>
+            <size key="customSize" width="540" height="660"/>
+            <connections>
+                <outlet property="productImage" destination="AJ0-cx-E5U" id="1Qn-pB-lXX"/>
+            </connections>
+            <point key="canvasLocation" x="-61" y="-47"/>
+        </collectionViewCell>
+    </objects>
+</document>

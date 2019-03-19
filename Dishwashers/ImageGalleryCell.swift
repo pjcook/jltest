@@ -9,7 +9,7 @@
 import UIKit
 
 class ImageGalleryCell: UICollectionViewCell {
-    @IBOutlet private var productImage: UIImageView!
+    @IBOutlet private(set) var productImage: UIImageView!
     
     private var viewModel: ImageGalleryCellViewModel?
     
