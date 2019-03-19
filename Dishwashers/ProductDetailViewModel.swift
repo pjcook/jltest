@@ -6,34 +6,48 @@
 //  Copyright © 2019 Software101. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct ProductDetailViewData {
     let isLoading: Bool
     let product: ProductItem
-    var price: String {
-        guard !product.price.now.isEmpty, let price = Double(product.price.now) else { return "" }
-        let locale = Locale.locale(from: product.price.currency)
-        
-        let numberFormatter = NumberFormatter()
-        numberFormatter.locale = locale
-        numberFormatter.numberStyle = .currency
-        return numberFormatter.string(from: NSNumber(value: price)) ?? ""
-    }
 }
 
 class ProductDetailViewModel {
     private let apiService: APIServiceProtocol
+    let maximumGalleryHeight: CGFloat
     private(set) var viewData: ProductDetailViewData {
         didSet {
             delegate?.reloadViewData()
         }
     }
     
+    var imageGalleryViewModel: ImageGalleryViewModel {
+        return ImageGalleryViewModel(apiService: apiService, urls: viewData.product.media.images.urls)
+    }
+    
+    var priceViewData: ProductDetailsPriceViewData {
+        return ProductDetailsPriceViewData(
+            price: viewData.product.price.nowFormatted,
+            specialOffer: viewData.product.displaySpecialOffer,
+            additionalServices: viewData.product.additionalServices.includedServices)
+    }
+    
+    var productInformationViewData: ProductDetailsProductInfoViewData {
+        return ProductDetailsProductInfoViewData(
+            productCode: viewData.product.code,
+            productDescription: viewData.product.details.productInformation)
+    }
+    
+    var productSpecificationViewData: ProductDetailsProductSpecificationViewData {
+        return ProductDetailsProductSpecificationViewData(productDetails: viewData.product.details)
+    }
+    
     weak var delegate: ViewModelDelegate?
     
-    init(viewData: ProductDetailViewData, apiService: APIServiceProtocol) {
+    init(viewData: ProductDetailViewData, maximumGalleryHeight: CGFloat, apiService: APIServiceProtocol) {
         self.apiService = apiService
+        self.maximumGalleryHeight = maximumGalleryHeight
         self.viewData = viewData
     }
     

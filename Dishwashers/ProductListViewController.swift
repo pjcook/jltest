@@ -13,11 +13,46 @@ class ProductListViewController: UIViewController {
     @IBOutlet private(set) var loadingLabel: UILabel!
     
     var viewModel: ProductListViewModel!
+    private var cellSize: CGSize = .zero {
+        didSet {
+            print("\(cellSize) \(collectionView.frame)  \(view.frame)")
+        }
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshState()
         viewModel.loadPage()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refreshCellSize()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        refreshCellSize()
+    }
+    
+    private func calculateCellWidth(maxWidth: Float, cellPadding: Float, minCellSize: Float) -> Float {
+        let numberOfCells = Float(floor(maxWidth / (minCellSize + cellPadding)))
+        let availableWidth = Float((maxWidth - ((numberOfCells - 1) * cellPadding)))
+        let cellWidth = availableWidth / numberOfCells
+        return cellWidth
+    }
+    
+    private func refreshCellSize() {
+        let width = Float(view.frame.size.width)
+        let maxWidth = Float(width - Float(view.safeAreaInsets.left) - Float(view.safeAreaInsets.right))
+        print("\(cellSize) \(collectionView.frame)  \(view.frame)")
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            let cellPadding = Float(flowLayout.minimumInteritemSpacing)
+            let cellWidth = CGFloat(calculateCellWidth(maxWidth: maxWidth, cellPadding: cellPadding, minCellSize: 150))
+            if cellWidth != flowLayout.itemSize.width {
+                cellSize = CGSize(width: cellWidth, height: 350)
+                collectionView.reloadData()
+            }
+        }
     }
     
     private func refreshState() {
@@ -47,10 +82,6 @@ extension ProductListViewController: UICollectionViewDelegate {
 
 // MARK:- UICollectionViewDataSource
 extension ProductListViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.viewData.productItems.count
     }
@@ -60,5 +91,23 @@ extension ProductListViewController: UICollectionViewDataSource {
         let cellViewModel = viewModel.viewModelForCell(at: indexPath.row)
         cell.configure(viewModel: cellViewModel)
         return cell
+    }
+}
+
+extension ProductListViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
+        return cellSize
+    }
+    
+    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, insetForSectionAt _: Int) -> UIEdgeInsets {
+        return .zero
+    }
+    
+    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, minimumLineSpacingForSectionAt _: Int) -> CGFloat {
+        return 0.5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.5
     }
 }

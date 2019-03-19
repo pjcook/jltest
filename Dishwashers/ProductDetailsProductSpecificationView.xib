@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductDetailsProductSpecificationView" customModule="Dishwashers" customModuleProvider="target">
+            <connections>
+                <outlet property="stackView" destination="doC-x2-ebr" id="QYl-IR-ZaO"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product specification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFa-0a-5ms">
+                    <rect key="frame" x="16" y="52" width="343" height="31.5"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="doC-x2-ebr">
+                    <rect key="frame" x="16" y="115.5" width="343" height="535.5"/>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="doC-x2-ebr" firstAttribute="top" secondItem="fFa-0a-5ms" secondAttribute="bottom" constant="32" id="Qe6-Ak-39z"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="doC-x2-ebr" secondAttribute="trailing" constant="16" id="iwv-GS-Aad"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="fFa-0a-5ms" secondAttribute="trailing" constant="16" id="lk0-yh-h3f"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="doC-x2-ebr" secondAttribute="bottom" constant="16" id="npQ-bv-JVA"/>
+                <constraint firstItem="fFa-0a-5ms" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="org-Se-XXb"/>
+                <constraint firstItem="fFa-0a-5ms" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="32" id="v20-qf-JcP"/>
+                <constraint firstItem="doC-x2-ebr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="xHC-aL-0X1"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>

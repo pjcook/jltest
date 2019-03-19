@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--ProductDetailViewController-->
+        <scene sceneID="NDj-HL-Whf">
+            <objects>
+                <viewController storyboardIdentifier="ProductDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qqz-NP-QOo" userLabel="ProductDetailViewController" customClass="ProductDetailViewController" customModule="Dishwashers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xdZ-hV-4Hq">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="olm-yX-9eG">
+                                <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Jy-GJ-PyF">
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="758"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="375" translatesAutoresizingMaskIntoConstraints="NO" id="u8K-Xh-cYh" customClass="ImageGalleryView" customModule="Dishwashers" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="768" height="375"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="375" id="f21-Ar-MRi"/>
+                                                    <constraint firstAttribute="width" secondItem="u8K-Xh-cYh" secondAttribute="height" multiplier="1:1" priority="750" id="oon-7O-H6P"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="375" translatesAutoresizingMaskIntoConstraints="NO" id="l4H-hg-bDj" customClass="ProductDetailsPriceView" customModule="Dishwashers" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="383" width="768" height="375"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="lM1-vJ-sSg" customClass="ProductDetailsProductInfoView" customModule="Dishwashers" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="758" width="768" height="0.0"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="lcI-eF-YuP" customClass="ProductDetailsProductSpecificationView" customModule="Dishwashers" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="758" width="768" height="0.0"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="l4H-hg-bDj" firstAttribute="bottom" secondItem="4Jy-GJ-PyF" secondAttribute="bottom" id="2Ez-fR-aqd"/>
+                                            <constraint firstItem="u8K-Xh-cYh" firstAttribute="trailing" secondItem="l4H-hg-bDj" secondAttribute="leading" constant="0.5" id="2Sj-tj-JoR"/>
+                                            <constraint firstAttribute="trailing" secondItem="u8K-Xh-cYh" secondAttribute="trailing" id="2Wu-4W-k3B"/>
+                                            <constraint firstItem="l4H-hg-bDj" firstAttribute="top" secondItem="4Jy-GJ-PyF" secondAttribute="top" id="2kq-hf-2PB"/>
+                                            <constraint firstAttribute="trailing" secondItem="lcI-eF-YuP" secondAttribute="trailing" id="7cr-75-clS"/>
+                                            <constraint firstItem="lcI-eF-YuP" firstAttribute="leading" secondItem="4Jy-GJ-PyF" secondAttribute="leading" id="Afm-vq-Tsz"/>
+                                            <constraint firstItem="lcI-eF-YuP" firstAttribute="trailing" secondItem="l4H-hg-bDj" secondAttribute="leading" constant="0.5" id="J6z-zK-Cyy"/>
+                                            <constraint firstItem="lM1-vJ-sSg" firstAttribute="top" secondItem="u8K-Xh-cYh" secondAttribute="bottom" id="L2e-2t-lGa"/>
+                                            <constraint firstItem="lcI-eF-YuP" firstAttribute="top" secondItem="lM1-vJ-sSg" secondAttribute="bottom" id="XAf-jD-PV2"/>
+                                            <constraint firstItem="lM1-vJ-sSg" firstAttribute="trailing" secondItem="l4H-hg-bDj" secondAttribute="leading" constant="0.5" id="XH9-Zb-HfG"/>
+                                            <constraint firstItem="u8K-Xh-cYh" firstAttribute="top" secondItem="4Jy-GJ-PyF" secondAttribute="top" id="YO8-wu-0GQ"/>
+                                            <constraint firstItem="l4H-hg-bDj" firstAttribute="leading" secondItem="4Jy-GJ-PyF" secondAttribute="leading" id="YQh-Gp-mTx"/>
+                                            <constraint firstItem="u8K-Xh-cYh" firstAttribute="leading" secondItem="4Jy-GJ-PyF" secondAttribute="leading" id="fEi-aW-5bA"/>
+                                            <constraint firstItem="l4H-hg-bDj" firstAttribute="top" secondItem="u8K-Xh-cYh" secondAttribute="bottom" constant="8" id="i8X-7o-L2F"/>
+                                            <constraint firstAttribute="trailing" secondItem="lM1-vJ-sSg" secondAttribute="trailing" id="mkm-hI-Jmn"/>
+                                            <constraint firstAttribute="bottom" secondItem="lcI-eF-YuP" secondAttribute="bottom" id="r5m-Re-dQu"/>
+                                            <constraint firstItem="lM1-vJ-sSg" firstAttribute="top" secondItem="l4H-hg-bDj" secondAttribute="bottom" id="vkA-JV-owE"/>
+                                            <constraint firstItem="lM1-vJ-sSg" firstAttribute="leading" secondItem="4Jy-GJ-PyF" secondAttribute="leading" id="x0k-lC-nSJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="l4H-hg-bDj" secondAttribute="trailing" id="yWG-EB-JxR"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="2Sj-tj-JoR"/>
+                                                <exclude reference="L2e-2t-lGa"/>
+                                                <exclude reference="XH9-Zb-HfG"/>
+                                                <exclude reference="J6z-zK-Cyy"/>
+                                                <exclude reference="2Ez-fR-aqd"/>
+                                                <exclude reference="2kq-hf-2PB"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="l4H-hg-bDj" firstAttribute="width" secondItem="olm-yX-9eG" secondAttribute="width" multiplier="1:3" id="KB4-Pq-CBp"/>
+                                    <constraint firstItem="4Jy-GJ-PyF" firstAttribute="width" secondItem="olm-yX-9eG" secondAttribute="width" id="OvN-W3-kvZ"/>
+                                    <constraint firstItem="4Jy-GJ-PyF" firstAttribute="top" secondItem="olm-yX-9eG" secondAttribute="top" id="b0J-71-eAG"/>
+                                    <constraint firstItem="4Jy-GJ-PyF" firstAttribute="leading" secondItem="olm-yX-9eG" secondAttribute="leading" id="mSY-UU-dxN"/>
+                                    <constraint firstAttribute="bottom" secondItem="4Jy-GJ-PyF" secondAttribute="bottom" id="mjL-CI-LTE"/>
+                                    <constraint firstAttribute="trailing" secondItem="4Jy-GJ-PyF" secondAttribute="trailing" id="ult-y0-o8T"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="KB4-Pq-CBp"/>
+                                    </mask>
+                                </variation>
+                            </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dq-nU-Zq2">
+                                <rect key="frame" x="16" y="501.5" width="736" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BGZ-ln-PTt" firstAttribute="bottom" secondItem="olm-yX-9eG" secondAttribute="bottom" id="28C-1g-3mg"/>
+                            <constraint firstItem="olm-yX-9eG" firstAttribute="leading" secondItem="BGZ-ln-PTt" secondAttribute="leading" id="6gT-di-NBy"/>
+                            <constraint firstItem="3dq-nU-Zq2" firstAttribute="leading" secondItem="xdZ-hV-4Hq" secondAttribute="leading" constant="16" id="HDD-vO-40S"/>
+                            <constraint firstItem="BGZ-ln-PTt" firstAttribute="trailing" secondItem="3dq-nU-Zq2" secondAttribute="trailing" constant="16" id="Mp5-gj-vWV"/>
+                            <constraint firstItem="3dq-nU-Zq2" firstAttribute="centerY" secondItem="xdZ-hV-4Hq" secondAttribute="centerY" id="Uj6-je-v2J"/>
+                            <constraint firstItem="BGZ-ln-PTt" firstAttribute="trailing" secondItem="olm-yX-9eG" secondAttribute="trailing" id="gVl-sa-hnW"/>
+                            <constraint firstItem="olm-yX-9eG" firstAttribute="top" secondItem="BGZ-ln-PTt" secondAttribute="top" id="jUI-X2-0OU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BGZ-ln-PTt"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageGalleryBottomContraintPortrait" destination="i8X-7o-L2F" id="HFJ-bI-qRK"/>
+                        <outlet property="imageGalleryHeightContraint" destination="f21-Ar-MRi" id="RxZ-xL-kZW"/>
+                        <outlet property="imageGalleryTrailingContraintLandscape" destination="2Sj-tj-JoR" id="mwp-hX-86d"/>
+                        <outlet property="imageGalleryTrailingContraintPortrait" destination="2Wu-4W-k3B" id="BWu-Lx-PEt"/>
+                        <outlet property="imageGalleryView" destination="u8K-Xh-cYh" id="I06-8M-ujv"/>
+                        <outlet property="loadingLabel" destination="3dq-nU-Zq2" id="GDf-JG-dhA"/>
+                        <outlet property="priceBottomContraintLandscape" destination="2Ez-fR-aqd" id="2h8-oa-VUy"/>
+                        <outlet property="priceLeadingContraintPortrait" destination="YQh-Gp-mTx" id="OxP-cM-Ni5"/>
+                        <outlet property="priceTopContraintLandscape" destination="2kq-hf-2PB" id="K3N-BJ-5et"/>
+                        <outlet property="priceView" destination="l4H-hg-bDj" id="r83-z0-aM7"/>
+                        <outlet property="priceWidthContraintLandscape" destination="KB4-Pq-CBp" id="alu-T3-cN1"/>
+                        <outlet property="productInformationTopContraintLandscape" destination="L2e-2t-lGa" id="jPK-8w-cYa"/>
+                        <outlet property="productInformationTopContraintPortrait" destination="vkA-JV-owE" id="6c5-Ug-QF0"/>
+                        <outlet property="productInformationTrailingContraintLandscape" destination="XH9-Zb-HfG" id="U8A-Ij-Q7K"/>
+                        <outlet property="productInformationTrailingContraintPortrait" destination="mkm-hI-Jmn" id="Qrr-9h-yQr"/>
+                        <outlet property="productInformationView" destination="lM1-vJ-sSg" id="Zo7-GO-15Y"/>
+                        <outlet property="productSpecificationTrailingContraintLandscape" destination="J6z-zK-Cyy" id="ifA-Sz-Rel"/>
+                        <outlet property="productSpecificationTrailingContraintPortrait" destination="7cr-75-clS" id="OsI-QX-C9z"/>
+                        <outlet property="productSpecificationView" destination="lcI-eF-YuP" id="vK6-W2-ATW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ytQ-OD-KFP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2831" y="773"/>
+        </scene>
+    </scenes>
+</document>

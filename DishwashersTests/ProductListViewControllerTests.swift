@@ -83,12 +83,6 @@ class ProductListViewControllerTests: XCTestCase {
         XCTAssertEqual(collectionViewItemCount, 20)
     }
     
-    func test_viewController_numberOfSections() {
-        _ = viewController.view
-        let numberOfSections = viewController.numberOfSections(in: viewController.collectionView)
-        XCTAssertEqual(numberOfSections, 1)
-    }
-    
     func test_viewController_loading_cell_with_data() {
         let expectation = self.expectation(description: "Wait for response")
         testsViewModel.session.responseData = TestData.searchValidResponse()

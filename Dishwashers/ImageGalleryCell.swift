@@ -1,21 +1,17 @@
 //
-//  ProductListCell.swift
+//  ImageGalleryCell.swift
 //  Dishwashers
 //
-//  Created by PJ COOK on 16/03/2019.
+//  Created by PJ COOK on 18/03/2019.
 //  Copyright © 2019 Software101. All rights reserved.
 //
 
 import UIKit
 
-class ProductListCell: UICollectionViewCell {
-    static let identifier = "ProductListCell"
+class ImageGalleryCell: UICollectionViewCell {
+    @IBOutlet private var productImage: UIImageView!
     
-    @IBOutlet private(set) var productImage: UIImageView!
-    @IBOutlet private(set) var productTitle: UILabel!
-    @IBOutlet private(set) var productPrice: UILabel!
-
-    private var viewModel: ProductListCellViewModel?
+    private var viewModel: ImageGalleryCellViewModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,30 +19,25 @@ class ProductListCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         viewModel?.prepareForReuse()
         productImage.image = nil
-        productTitle.text = nil
-        productPrice.text = nil
     }
     
-    func configure(viewModel: ProductListCellViewModel) {
+    func configure(_ viewModel: ImageGalleryCellViewModel) {
         self.viewModel = viewModel
-        viewModel.delegate = self
         refreshState()
         viewModel.loadImage()
     }
     
     private func refreshState() {
-        productTitle.text = viewModel?.viewData.item.title
-        productPrice.text = viewModel?.viewData.item.price.nowFormatted
-        
         UIView.transition(with: self, duration: 0.2, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
             self.productImage.image = self.viewModel?.viewData.image
         }, completion: nil)
     }
 }
 
-extension ProductListCell: ViewModelDelegate {
+extension ImageGalleryCell: ViewModelDelegate {
     func reloadViewData() {
         refreshState()
     }

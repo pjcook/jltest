@@ -56,7 +56,7 @@ class ProductListViewModel {
     }
     
     func didSelectItem(_ index: Int, viewController: UIViewController) {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: ProductListViewModel.self))
+        let storyboard = UIStoryboard(name: "ProductDetail", bundle: Bundle(for: ProductListViewModel.self))
         guard let detailViewController = storyboard.instantiateViewController(withIdentifier: "ProductDetailViewController") as? ProductDetailViewController else {
             assertionFailure("Could not load ProductDetailViewController")
             return
@@ -64,7 +64,9 @@ class ProductListViewModel {
         let item = viewData.productItems[index]
         let product = ProductItem(with: item)
         let detailViewData = ProductDetailViewData(isLoading: false, product: product)
-        detailViewController.viewModel = ProductDetailViewModel(viewData: detailViewData, apiService: apiService)
+        let maximumGalleryHeight: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 768 : 375
+        detailViewController.viewModel = ProductDetailViewModel(viewData: detailViewData, maximumGalleryHeight: maximumGalleryHeight, apiService: apiService)
+        detailViewController.viewModel.delegate = detailViewController
         viewController.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

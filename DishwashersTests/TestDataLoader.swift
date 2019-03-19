@@ -51,6 +51,14 @@ class TestData {
         
         return data
     }
+    
+    static func productDetailValidUpdatedTitleResponse() -> Data {
+        guard let data = FileLoader.loadTestData(filename: "product-search-response2") else {
+            preconditionFailure("Failed to load test data")
+        }
+        
+        return data
+    }
 }
 
 class TestDataLoader {

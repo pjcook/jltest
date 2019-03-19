@@ -1,47 +1,43 @@
 //
-//  ProductListCellViewModel.swift
+//  File.swift
 //  Dishwashers
 //
-//  Created by PJ COOK on 17/03/2019.
+//  Created by PJ COOK on 18/03/2019.
 //  Copyright © 2019 Software101. All rights reserved.
 //
 
 import UIKit
 
-struct ProductListCellViewData {
-    let item: FeedProductItem
+struct ImageGalleryCellViewData {
+    let url: String
     let image: UIImage?
     let isLoadingImage: Bool
 }
 
-class ProductListCellViewModel {
+class ImageGalleryCellViewModel {
     private let apiService: APIServiceProtocol
-    private(set) var viewData: ProductListCellViewData {
+    private var loadImageTask: URLSessionTask?
+    private(set) var viewData: ImageGalleryCellViewData {
         didSet {
             delegate?.reloadViewData()
         }
     }
-    private var loadImageTask: URLSessionTask?
     
     weak var delegate: ViewModelDelegate?
     
-    init(viewData: ProductListCellViewData, apiService: APIServiceProtocol) {
-        self.apiService = apiService
+    init(viewData: ImageGalleryCellViewData, apiService: APIServiceProtocol) {
         self.viewData = viewData
-    }
-    
-    func prepareForReuse() {
-        loadImageTask?.cancel()
+        self.apiService = apiService
     }
     
     func loadImage() {
         loadImageTask?.cancel()
-        var imageURL = viewData.item.image
+        var imageURL = viewData.url
         if imageURL.hasPrefix("//") {
             imageURL = "https:" + imageURL
         }
         if let url = URL(string: imageURL) {
-            viewData = ProductListCellViewData(item: viewData.item, image: viewData.image, isLoadingImage: true)
+            viewData = ImageGalleryCellViewData(url: viewData.url, image: viewData.image, isLoadingImage: true)
             loadImageTask = apiService.downloadImage(url: url, completionHandler: { [weak self] response in
                 guard let self = self else { return }
                 switch response {
@@ -54,9 +50,13 @@ class ProductListCellViewModel {
         }
     }
     
+    func prepareForReuse() {
+        loadImageTask?.cancel()
+    }
+    
     private func failedToLoadImage() {
         DispatchQueue.main.async {
-            self.viewData = ProductListCellViewData(item: self.viewData.item, image: self.viewData.image, isLoadingImage: false)
+            self.viewData = ImageGalleryCellViewData(url: self.viewData.url, image: self.viewData.image, isLoadingImage: false)
         }
     }
     
@@ -66,7 +66,7 @@ class ProductListCellViewModel {
             image = UIImage(data: data)
         }
         DispatchQueue.main.async {
-            self.viewData = ProductListCellViewData(item: self.viewData.item, image: image, isLoadingImage: false)
+            self.viewData = ImageGalleryCellViewData(url: self.viewData.url, image: image, isLoadingImage: false)
         }
     }
 }

@@ -48,7 +48,7 @@ class ProductListCellTests: XCTestCase {
         let viewModel = ProductListCellViewModel(viewData: viewData, apiService: testsViewModel.apiService)
         cell.configure(viewModel: viewModel)
         XCTAssertEqual(cell.productTitle.text, productItem.title)
-        XCTAssertEqual(cell.productPrice.text, viewData.price)
+        XCTAssertEqual(cell.productPrice.text, viewData.item.price.nowFormatted)
         XCTAssertNil(cell.productImage.image)
     }
     
@@ -70,7 +70,7 @@ class ProductListCellTests: XCTestCase {
         }
         
         XCTAssertEqual(cell.productTitle.text, productItem.title)
-        XCTAssertEqual(cell.productPrice.text, viewData.price)
+        XCTAssertEqual(cell.productPrice.text, viewData.item.price.nowFormatted)
         XCTAssertTrue(testsViewModel.session.taskComplete)
         XCTAssertFalse(testsViewModel.session.taskCompleteWithError)
         XCTAssertTrue(viewModel.loadImageCalled)
@@ -97,12 +97,12 @@ class ProductListCellTests: XCTestCase {
     func test_viewData_empty_price() {
         let productItem = FeedProductItem(productId: "abc", price: Price(was: "", now: "", currency: ""), title: "title", image: "")
         let viewData = ProductListCellViewData(item: productItem, image: nil, isLoadingImage: false)
-        XCTAssertTrue(viewData.price.isEmpty)
+        XCTAssertTrue(viewData.item.price.nowFormatted.isEmpty)
     }
     
     func test_viewData_price_with_invalid_currency() {
         let productItem = FeedProductItem(productId: "abc", price: Price(was: "", now: "60", currency: ""), title: "title", image: "")
         let viewData = ProductListCellViewData(item: productItem, image: nil, isLoadingImage: false)
-        XCTAssertEqual("60", viewData.price)
+        XCTAssertEqual("60", viewData.item.price.nowFormatted)
     }
 }
