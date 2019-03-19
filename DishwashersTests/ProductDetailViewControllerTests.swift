@@ -43,6 +43,8 @@ class ProductDetailViewControllerTests: XCTestCase {
     override func tearDown() {}
 
     func test_viewController_basic_load() {
+        viewController.view.setNeedsLayout()
+        viewController.view.layoutIfNeeded()
         XCTAssertNotNil(viewController)
         XCTAssertNotNil(viewController.view)
         XCTAssertNotNil(viewController.viewModel.delegate)
