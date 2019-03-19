@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="hzG-98-MAl">
-                    <rect key="frame" x="168" y="614" width="39" height="37"/>
+                    <rect key="frame" x="168" y="630" width="39" height="37"/>
                     <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
@@ -30,7 +30,7 @@
                     </connections>
                 </pageControl>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="2Zc-FS-0wh">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="606"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="622"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="xEp-Ey-32B">
                         <size key="itemSize" width="375" height="375"/>
@@ -47,11 +47,11 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="2Zc-FS-0wh" firstAttribute="leading" secondItem="Bkj-w3-6Xm" secondAttribute="leading" id="3fp-E2-m9f"/>
-                <constraint firstItem="hzG-98-MAl" firstAttribute="top" secondItem="2Zc-FS-0wh" secondAttribute="bottom" constant="8" id="940-66-ERO"/>
                 <constraint firstAttribute="trailing" secondItem="2Zc-FS-0wh" secondAttribute="trailing" id="ZjN-56-pfq"/>
                 <constraint firstItem="2Zc-FS-0wh" firstAttribute="top" secondItem="Bkj-w3-6Xm" secondAttribute="top" id="gi4-sO-woL"/>
                 <constraint firstItem="hzG-98-MAl" firstAttribute="centerX" secondItem="Bkj-w3-6Xm" secondAttribute="centerX" id="kFl-MK-Wb2"/>
-                <constraint firstAttribute="bottom" secondItem="hzG-98-MAl" secondAttribute="bottom" constant="16" id="z01-Ht-2DF"/>
+                <constraint firstAttribute="bottom" secondItem="2Zc-FS-0wh" secondAttribute="bottom" constant="45" id="oBG-cW-XV5"/>
+                <constraint firstAttribute="bottom" secondItem="hzG-98-MAl" secondAttribute="bottom" id="z01-Ht-2DF"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="4Ri-Wf-lS1"/>
             <point key="canvasLocation" x="241" y="-481"/>
