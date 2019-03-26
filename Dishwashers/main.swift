@@ -1,6 +1,4 @@
-//
-//  Copyright © 2016-2018 mokacoding. All rights reserved.
-//
+//  Copyright © 2019 Software101. All rights reserved.
 
 import UIKit
 

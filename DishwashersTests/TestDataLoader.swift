@@ -1,10 +1,4 @@
-//
-//  TestDataLoader.swift
-//  DishwashersTests
-//
-//  Created by PJ COOK on 17/03/2019.
 //  Copyright © 2019 Software101. All rights reserved.
-//
 
 @testable import Dishwashers
 import XCTest
