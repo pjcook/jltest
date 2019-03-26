@@ -21,39 +21,41 @@ class ProductDetailViewModel {
             delegate?.reloadViewData()
         }
     }
-    
+
     var imageGalleryViewModel: ImageGalleryViewModel {
         return ImageGalleryViewModel(apiService: apiService, urls: viewData.product.media.images.urls)
     }
-    
+
     var priceViewData: ProductDetailsPriceViewData {
         return ProductDetailsPriceViewData(
             price: viewData.product.price.nowFormatted,
             specialOffer: viewData.product.displaySpecialOffer,
-            additionalServices: viewData.product.additionalServices.includedServices)
+            additionalServices: viewData.product.additionalServices.includedServices
+        )
     }
-    
+
     var productInformationViewData: ProductDetailsProductInfoViewData {
         return ProductDetailsProductInfoViewData(
             productCode: viewData.product.code,
-            productDescription: viewData.product.details.productInformation)
+            productDescription: viewData.product.details.productInformation
+        )
     }
-    
+
     var productSpecificationViewData: ProductDetailsProductSpecificationViewData {
         return ProductDetailsProductSpecificationViewData(productDetails: viewData.product.details)
     }
-    
+
     weak var delegate: ViewModelDelegate?
-    
+
     init(viewData: ProductDetailViewData, maximumGalleryHeight: CGFloat, apiService: APIServiceProtocol) {
         self.apiService = apiService
         self.maximumGalleryHeight = maximumGalleryHeight
         self.viewData = viewData
     }
-    
+
     func loadDetails() {
         guard !viewData.isLoading else { return }
-        self.viewData = ProductDetailViewData(isLoading: true, product: self.viewData.product)
+        viewData = ProductDetailViewData(isLoading: true, product: viewData.product)
         _ = apiService.productDetails(productID: viewData.product.productId) { [weak self] response in
             guard let self = self else { return }
             switch response {
@@ -72,7 +74,7 @@ extension ProductDetailViewModel {
             self.viewData = ProductDetailViewData(isLoading: false, product: self.viewData.product)
         }
     }
-    
+
     private func processNewData(data: Data?) {
         var product = viewData.product
         if let newProduct = ProductItem.processNetworkData(data: data) {

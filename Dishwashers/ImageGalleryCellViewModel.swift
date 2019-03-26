@@ -22,14 +22,14 @@ class ImageGalleryCellViewModel {
             delegate?.reloadViewData()
         }
     }
-    
+
     weak var delegate: ViewModelDelegate?
-    
+
     init(viewData: ImageGalleryCellViewData, apiService: APIServiceProtocol) {
         self.viewData = viewData
         self.apiService = apiService
     }
-    
+
     func loadImage() {
         loadImageTask?.cancel()
         var imageURL = viewData.url
@@ -49,17 +49,17 @@ class ImageGalleryCellViewModel {
             })
         }
     }
-    
+
     func prepareForReuse() {
         loadImageTask?.cancel()
     }
-    
+
     private func failedToLoadImage() {
         DispatchQueue.main.async {
             self.viewData = ImageGalleryCellViewData(url: self.viewData.url, image: self.viewData.image, isLoadingImage: false)
         }
     }
-    
+
     private func processImageData(data: Data?) {
         var image: UIImage? = viewData.image
         if let data = data {

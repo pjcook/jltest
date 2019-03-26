@@ -15,34 +15,34 @@ class ProductListViewController: UIViewController {
     private let minimumCellWidth: Float = 150
     private let cellHeight: CGFloat = 350
     private let cellSpacing: CGFloat = 0.5
-    
+
     var viewModel: ProductListViewModel!
     private var cellSize: CGSize = .zero
-        
+
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshState()
         viewModel.loadPage()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         refreshCellSize()
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         refreshCellSize()
     }
-    
+
     private func calculateCellWidth(containerWidth: Float, cellPadding: Float, minCellWidth: Float) -> Float {
         let numberOfColumns = Float(floor(containerWidth / (minCellWidth + cellPadding)))
-        let availableWidth = Float((containerWidth - ((numberOfColumns - 1) * cellPadding)))
+        let availableWidth = Float(containerWidth - ((numberOfColumns - 1) * cellPadding))
         let cellWidth = availableWidth / numberOfColumns
         self.numberOfColumns = Int(numberOfColumns)
         return cellWidth
     }
-    
+
     private func refreshCellSize() {
         let maxWidth = Float(collectionView.frame.width)
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -53,7 +53,7 @@ class ProductListViewController: UIViewController {
             }
         }
     }
-    
+
     private func refreshState() {
         let pageTitle = NSLocalizedString("productList.page.title", comment: "")
         let totalResults = viewModel.viewData.totalResults
@@ -71,7 +71,8 @@ extension ProductListViewController: ViewModelDelegate {
     }
 }
 
-// MARK:- UICollectionViewDelegate
+// MARK: - UICollectionViewDelegate
+
 extension ProductListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
@@ -79,12 +80,13 @@ extension ProductListViewController: UICollectionViewDelegate {
     }
 }
 
-// MARK:- UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource
+
 extension ProductListViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         return viewModel.viewData.productItems.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductListCell.identifier, for: indexPath) as! ProductListCell
         let cellViewModel = viewModel.viewModelForCell(at: indexPath.row)
@@ -102,7 +104,7 @@ extension ProductListViewController: UICollectionViewDelegateFlowLayout {
             numberOfColumns -= 1
         }
         widthPerItem = availableWidth / CGFloat(numberOfColumns)
-        
+
         return CGSize(width: widthPerItem, height: cellHeight)
     }
 
@@ -114,7 +116,7 @@ extension ProductListViewController: UICollectionViewDelegateFlowLayout {
         return cellSpacing
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, minimumInteritemSpacingForSectionAt _: Int) -> CGFloat {
         return cellSpacing
     }
 }

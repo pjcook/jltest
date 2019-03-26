@@ -6,11 +6,10 @@
 //  Copyright © 2019 Software101. All rights reserved.
 //
 
-import XCTest
 @testable import Dishwashers
+import XCTest
 
 class StylesTests: XCTestCase {
-
     override func setUp() {}
 
     override func tearDown() {}

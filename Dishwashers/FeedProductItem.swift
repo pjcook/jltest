@@ -12,13 +12,13 @@ struct Price: Codable {
     let was: String
     let now: String
     let currency: String
-    
+
     var nowFormatted: String {
         guard !now.isEmpty, let price = Double(now) else { return "" }
         guard let locale = Locale.locale(from: currency) else {
             return now
         }
-        
+
         let numberFormatter = NumberFormatter()
         numberFormatter.locale = locale
         numberFormatter.numberStyle = .currency

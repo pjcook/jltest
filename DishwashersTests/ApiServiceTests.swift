@@ -6,8 +6,8 @@
 //  Copyright © 2019 Software101. All rights reserved.
 //
 
-import XCTest
 @testable import Dishwashers
+import XCTest
 
 class ApiServiceTests: XCTestCase {
     private var testsViewModel = TestsBasicViewModel()
@@ -16,14 +16,15 @@ class ApiServiceTests: XCTestCase {
     override func tearDown() {}
 }
 
-// MARK:- searchFeed tests
+// MARK: - searchFeed tests
+
 extension ApiServiceTests {
     func test_searchFeed_returns_task() {
         let parameters = SearchParameters(pageNumber: 1)
         let task = testsViewModel.apiService.searchFeed(search: parameters) { _ in }
         XCTAssertNotNil(task)
     }
-    
+
     func test_searchFeed_from_api_success() {
         let expectation = self.expectation(description: "Wait for response")
         testsViewModel.session.responseData = TestData.searchValidResponse()
@@ -38,17 +39,17 @@ extension ApiServiceTests {
                 XCTAssertNotNil(data)
             }
         }
-        
+
         waitForExpectations(timeout: 1) { error in
             if let error = error {
                 XCTFail("\(error)")
             }
         }
-        
+
         XCTAssertTrue(testsViewModel.session.taskComplete)
         XCTAssertFalse(testsViewModel.session.taskCompleteWithError)
     }
-    
+
     func test_searchFeed_with_server_error_500() {
         let expectation = self.expectation(description: "Wait for response")
         testsViewModel.session.responseData = TestData.searchAuthError()
@@ -63,17 +64,17 @@ extension ApiServiceTests {
                 XCTFail()
             }
         }
-        
+
         waitForExpectations(timeout: 1) { error in
             if let error = error {
                 XCTFail("\(error)")
             }
         }
-        
+
         XCTAssertTrue(testsViewModel.session.taskComplete)
         XCTAssertFalse(testsViewModel.session.taskCompleteWithError)
     }
-    
+
     func test_searchFeed_with_invalid_response() {
         let expectation = self.expectation(description: "Wait for response")
         testsViewModel.session.responseData = TestData.searchValidResponse()
@@ -87,17 +88,17 @@ extension ApiServiceTests {
                 XCTFail()
             }
         }
-        
+
         waitForExpectations(timeout: 1) { error in
             if let error = error {
                 XCTFail("\(error)")
             }
         }
-        
+
         XCTAssertTrue(testsViewModel.session.taskComplete)
         XCTAssertFalse(testsViewModel.session.taskCompleteWithError)
     }
-    
+
     func test_searchFeed_with_server_error() {
         let expectation = self.expectation(description: "Wait for response")
         testsViewModel.session.responseError = APIServiceError.networkError
@@ -111,17 +112,17 @@ extension ApiServiceTests {
                 XCTFail()
             }
         }
-        
+
         waitForExpectations(timeout: 1) { error in
             if let error = error {
                 XCTFail("\(error)")
             }
         }
-        
+
         XCTAssertTrue(testsViewModel.session.taskComplete)
         XCTAssertTrue(testsViewModel.session.taskCompleteWithError)
     }
-    
+
     func test_searchFeed_failed_to_build_url() {
         let configuration = Configuration(baseURL: "https://api.johnlewis.com/v1/search.html?q=Aïn+Béïda+Algeria", apiKey: "")
         let apiService = APIService(configuration: configuration, session: testsViewModel.session)
@@ -137,13 +138,14 @@ extension ApiServiceTests {
     }
 }
 
-// MARK:- productDetails tests
+// MARK: - productDetails tests
+
 extension ApiServiceTests {
     func test_productDetails_returns_task() {
         let task = testsViewModel.apiService.productDetails(productID: "abc") { _ in }
         XCTAssertNotNil(task)
     }
-    
+
     func test_productDetails_from_api_success() {
         let expectation = self.expectation(description: "Wait for response")
         testsViewModel.session.responseData = TestData.productDetailValidResponse()
@@ -157,17 +159,17 @@ extension ApiServiceTests {
                 XCTAssertNotNil(data)
             }
         }
-        
+
         waitForExpectations(timeout: 1) { error in
             if let error = error {
                 XCTFail("\(error)")
             }
         }
-        
+
         XCTAssertTrue(testsViewModel.session.taskComplete)
         XCTAssertFalse(testsViewModel.session.taskCompleteWithError)
     }
-    
+
     func test_productDetails_with_server_error_500() {
         let expectation = self.expectation(description: "Wait for response")
         testsViewModel.session.responseData = FileLoader.loadTestData(filename: "product-search-invalid-productid-response")
@@ -181,17 +183,17 @@ extension ApiServiceTests {
                 XCTFail()
             }
         }
-        
+
         waitForExpectations(timeout: 1) { error in
             if let error = error {
                 XCTFail("\(error)")
             }
         }
-        
+
         XCTAssertTrue(testsViewModel.session.taskComplete)
         XCTAssertFalse(testsViewModel.session.taskCompleteWithError)
     }
-    
+
     func test_productDetails_with_invalid_response() {
         let expectation = self.expectation(description: "Wait for response")
         testsViewModel.session.responseData = TestData.productDetailValidResponse()
@@ -204,17 +206,17 @@ extension ApiServiceTests {
                 XCTFail()
             }
         }
-        
+
         waitForExpectations(timeout: 1) { error in
             if let error = error {
                 XCTFail("\(error)")
             }
         }
-        
+
         XCTAssertTrue(testsViewModel.session.taskComplete)
         XCTAssertFalse(testsViewModel.session.taskCompleteWithError)
     }
-    
+
     func test_productDetails_with_server_error() {
         let expectation = self.expectation(description: "Wait for response")
         testsViewModel.session.responseError = APIServiceError.networkError
@@ -227,17 +229,17 @@ extension ApiServiceTests {
                 XCTFail()
             }
         }
-        
+
         waitForExpectations(timeout: 1) { error in
             if let error = error {
                 XCTFail("\(error)")
             }
         }
-        
+
         XCTAssertTrue(testsViewModel.session.taskComplete)
         XCTAssertTrue(testsViewModel.session.taskCompleteWithError)
     }
-    
+
     func test_productDetails_failed_to_build_url() {
         let configuration = Configuration(baseURL: "https://api.johnlewis.com/v1/search.html?q=Aïn+Béïda+Algeria", apiKey: "")
         let apiService = APIService(configuration: configuration, session: testsViewModel.session)
@@ -252,7 +254,8 @@ extension ApiServiceTests {
     }
 }
 
-// MARK:- downloadImage tests
+// MARK: - downloadImage tests
+
 extension ApiServiceTests {
     func test_download_valid_image() {
         let expectation = self.expectation(description: "Wait for response")
@@ -272,14 +275,14 @@ extension ApiServiceTests {
                 }
             }
         }
-        
+
         waitForExpectations(timeout: 1) { error in
             if let error = error {
                 XCTFail("\(error)")
             }
         }
     }
-    
+
     func test_download_image_no_image() {
         let expectation = self.expectation(description: "Wait for response")
         let url = FileLoader.url(forResource: "Product Grid", withExtension: "PNG")!
@@ -293,14 +296,14 @@ extension ApiServiceTests {
                 XCTAssertNil(data)
             }
         }
-        
+
         waitForExpectations(timeout: 1) { error in
             if let error = error {
                 XCTFail("\(error)")
             }
         }
     }
-    
+
     func test_download_image_with_server_error() {
         let expectation = self.expectation(description: "Wait for response")
         let url = FileLoader.url(forResource: "Product Grid", withExtension: "PNG")!
@@ -314,14 +317,14 @@ extension ApiServiceTests {
                 XCTFail()
             }
         }
-        
+
         waitForExpectations(timeout: 1) { error in
             if let error = error {
                 XCTFail("\(error)")
             }
         }
     }
-    
+
     func test_download_image_invalid_data() {
         let expectation = self.expectation(description: "Wait for response")
         let url = FileLoader.url(forResource: "search-auth-error-response", withExtension: "json")!
@@ -340,7 +343,7 @@ extension ApiServiceTests {
                 }
             }
         }
-        
+
         waitForExpectations(timeout: 1) { error in
             if let error = error {
                 XCTFail("\(error)")

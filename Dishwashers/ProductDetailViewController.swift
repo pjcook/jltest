@@ -15,7 +15,7 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet private var productInformationView: ProductDetailsProductInfoView!
     @IBOutlet private var productSpecificationView: ProductDetailsProductSpecificationView!
     @IBOutlet private var imageGalleryHeightContraint: NSLayoutConstraint!
-    
+
     // Portrait contraints
     @IBOutlet private var imageGalleryTrailingContraintPortrait: NSLayoutConstraint!
     @IBOutlet private var imageGalleryBottomContraintPortrait: NSLayoutConstraint!
@@ -23,7 +23,7 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet private var productInformationTrailingContraintPortrait: NSLayoutConstraint!
     @IBOutlet private var productSpecificationTrailingContraintPortrait: NSLayoutConstraint!
     @IBOutlet private var priceLeadingContraintPortrait: NSLayoutConstraint!
-    
+
     // Landscape contraints
     @IBOutlet private var imageGalleryTrailingContraintLandscape: NSLayoutConstraint!
     @IBOutlet private var productInformationTopContraintLandscape: NSLayoutConstraint!
@@ -32,16 +32,16 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet private var priceTopContraintLandscape: NSLayoutConstraint!
     @IBOutlet private var priceBottomContraintLandscape: NSLayoutConstraint!
     @IBOutlet private var priceWidthContraintLandscape: NSLayoutConstraint!
-    
+
     var viewModel: ProductDetailViewModel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshContraintsBasedOnDeviceLayout()
         refreshState()
         viewModel.loadDetails()
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         imageGalleryHeightContraint.constant = viewModel.maximumGalleryHeight
@@ -51,7 +51,7 @@ class ProductDetailViewController: UIViewController {
         productInformationView.layoutSubviews()
         productSpecificationView.layoutSubviews()
     }
-    
+
     private func refreshContraintsBasedOnDeviceLayout() {
         imageGalleryTrailingContraintPortrait.isActive = !isIpadLandscape()
         imageGalleryBottomContraintPortrait.isActive = !isIpadLandscape()
@@ -59,7 +59,7 @@ class ProductDetailViewController: UIViewController {
         productInformationTrailingContraintPortrait.isActive = !isIpadLandscape()
         productSpecificationTrailingContraintPortrait.isActive = !isIpadLandscape()
         priceLeadingContraintPortrait.isActive = !isIpadLandscape()
-        
+
         imageGalleryTrailingContraintLandscape.isActive = isIpadLandscape()
         productInformationTopContraintLandscape.isActive = isIpadLandscape()
         productInformationTrailingContraintLandscape.isActive = isIpadLandscape()
@@ -68,11 +68,11 @@ class ProductDetailViewController: UIViewController {
         priceBottomContraintLandscape.isActive = isIpadLandscape()
         priceWidthContraintLandscape.isActive = isIpadLandscape()
     }
-    
+
     private func isIpadLandscape() -> Bool {
         return UIDevice.current.userInterfaceIdiom == .pad && view.traitCollection.horizontalSizeClass == .regular && UIDevice.current.orientation.isLandscape
     }
-    
+
     private func refreshState() {
         title = viewModel.viewData.product.title
         loadingLabel.isHidden = !viewModel.viewData.isLoading

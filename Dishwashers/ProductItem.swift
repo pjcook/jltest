@@ -47,7 +47,7 @@ struct ProductItem: Codable {
     let displaySpecialOffer: String
     let additionalServices: ProductAdditionalServices
     let code: String
-    
+
     init(with item: FeedProductItem) {
         productId = item.productId
         title = item.title

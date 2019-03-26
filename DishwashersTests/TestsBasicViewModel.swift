@@ -6,15 +6,15 @@
 //  Copyright © 2019 Software101. All rights reserved.
 //
 
-import XCTest
 @testable import Dishwashers
+import XCTest
 
 class TestsBasicViewModel {
     private(set) var apiService: APIServiceProtocol
     private(set) var configuration: Configuration
     private(set) var session: MockURLSession
     var pendingExpectation: XCTestExpectation?
-    
+
     init() {
         configuration = Configuration()
         session = MockURLSession()

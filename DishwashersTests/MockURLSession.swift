@@ -13,12 +13,12 @@ class MockURLSessionDataTask: URLSessionDataTask {
     override var taskIdentifier: Int {
         return identifier
     }
-    
+
     override init() {}
     override func cancel() {}
     override func suspend() {}
     override func resume() {}
-    
+
     public override var state: URLSessionTask.State {
         return URLSessionTask.State.suspended
     }
@@ -29,11 +29,11 @@ class MockURLSession: URLSession {
     var responseData: Data?
     var httpResponse: URLResponse?
     var testExpectation: XCTestExpectation?
-    
+
     private(set) var taskComplete = false
     private(set) var taskCompleteWithError = false
-    
-    override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+
+    override func dataTask(with _: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         DispatchQueue.main.async {
             self.taskComplete = true
             self.taskCompleteWithError = self.responseError != nil

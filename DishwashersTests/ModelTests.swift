@@ -6,12 +6,13 @@
 //  Copyright © 2019 Software101. All rights reserved.
 //
 
-import XCTest
 @testable import Dishwashers
+import XCTest
 
 class ModelTests: XCTestCase {}
 
-// MARK:- Locale extension tests
+// MARK: - Locale extension tests
+
 extension ModelTests {
     func test_locale_extension() {
         let currencyCode = "GBP"
@@ -19,7 +20,7 @@ extension ModelTests {
         XCTAssertNotNil(locale)
         XCTAssertEqual("£", locale?.currencySymbol)
     }
-    
+
     func test_locale_extension_cache() {
         let currencyCode = "GBP"
         let locale1 = Locale.locale(from: currencyCode)
@@ -28,7 +29,7 @@ extension ModelTests {
         XCTAssertEqual("£", locale1?.currencySymbol)
         XCTAssertEqual(locale1, locale2)
     }
-    
+
     func test_locale_extension_with_invalid_currencyCode() {
         let currencyCode = "XXX"
         let locale = Locale.locale(from: currencyCode)
@@ -36,7 +37,8 @@ extension ModelTests {
     }
 }
 
-// MARK:- SearchParameters tests
+// MARK: - SearchParameters tests
+
 extension ModelTests {
     func test_searchParameters() {
         let page1 = SearchParameters.firstPage()
@@ -45,25 +47,26 @@ extension ModelTests {
     }
 }
 
-// MARK:- FeedSearchResults tests
+// MARK: - FeedSearchResults tests
+
 extension ModelTests {
     func test_feedSearchResults_processNetworkData_nil_data() {
         let results = FeedSearchResults.processNetworkData(data: nil)
         XCTAssertNil(results)
     }
-    
+
     func test_feedSearchResults_processNetworkData_invalidData() {
         let data = TestData.searchAuthError()
         let results = FeedSearchResults.processNetworkData(data: data)
         XCTAssertNil(results)
     }
-    
+
     func test_parse_feedSearchResults_data() {
         let searchResults = TestDataLoader.feedSearchResults()
         XCTAssertEqual(189, searchResults.results)
         XCTAssertEqual(10, searchResults.pagesAvailable)
         XCTAssertEqual(20, searchResults.products.count)
-        
+
         let product = searchResults.products.first!
         XCTAssertEqual("3294410", product.productId)
         XCTAssertEqual("Neff S513M60X1G Integrated Dishwasher, Stainless Steel", product.title)
@@ -74,22 +77,23 @@ extension ModelTests {
     }
 }
 
-// MARK:- ProductItem tests
+// MARK: - ProductItem tests
+
 extension ModelTests {
     func test_parse_productItem_processNetworkData_nil_data() {
         let result = ProductItem.processNetworkData(data: nil)
         XCTAssertNil(result)
     }
-    
+
     func test_parse_productItem_processNetworkData_invalidData() {
         let data = TestData.searchAuthError()
         let result = ProductItem.processNetworkData(data: data)
         XCTAssertNil(result)
     }
-    
+
     func test_parse_productItem_data() {
         let product = TestDataLoader.validProductItem()
-        
+
         XCTAssertEqual("3294410", product.productId)
         XCTAssertEqual("Neff S513M60X1G Integrated Dishwasher, Stainless Steel", product.title)
         XCTAssertEqual(8, product.media.images.urls.count)
@@ -102,7 +106,7 @@ extension ModelTests {
         XCTAssertEqual(1, product.additionalServices.includedServices.count)
         XCTAssertEqual("88701324", product.code)
     }
-    
+
     func test_productItem_from_feedProductItem() {
         let productItem = TestDataLoader.validFeedProductItem()
         let product = ProductItem(with: productItem)

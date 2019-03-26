@@ -21,19 +21,20 @@ class ProductListCellViewModel {
             delegate?.reloadViewData()
         }
     }
+
     private var loadImageTask: URLSessionTask?
-    
+
     weak var delegate: ViewModelDelegate?
-    
+
     init(viewData: ProductListCellViewData, apiService: APIServiceProtocol) {
         self.apiService = apiService
         self.viewData = viewData
     }
-    
+
     func prepareForReuse() {
         loadImageTask?.cancel()
     }
-    
+
     func loadImage() {
         loadImageTask?.cancel()
         var imageURL = viewData.item.image
@@ -53,13 +54,13 @@ class ProductListCellViewModel {
             })
         }
     }
-    
+
     private func failedToLoadImage() {
         DispatchQueue.main.async {
             self.viewData = ProductListCellViewData(item: self.viewData.item, image: self.viewData.image, isLoadingImage: false)
         }
     }
-    
+
     private func processImageData(data: Data?) {
         var image: UIImage? = viewData.image
         if let data = data {

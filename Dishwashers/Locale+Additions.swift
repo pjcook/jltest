@@ -15,8 +15,8 @@ extension Locale {
         if let locale = localeLookup[currencyCode] {
             return locale
         }
-        
-        var locale: Locale? = nil
+
+        var locale: Locale?
         for identifier in Locale.availableIdentifiers {
             let tempLocale = Locale(identifier: identifier)
             if tempLocale.currencyCode == currencyCode {

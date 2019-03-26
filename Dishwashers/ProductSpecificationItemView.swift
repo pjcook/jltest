@@ -16,12 +16,12 @@ struct ProductSpecificationItemViewData {
 class ProductSpecificationItemView: UIView {
     @IBOutlet private var name: UILabel!
     @IBOutlet private var value: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         xibSetup()
     }
-    
+
     func configure(viewData: ProductSpecificationItemViewData) {
         name.text = viewData.name
         value.text = viewData.value

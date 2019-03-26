@@ -26,14 +26,14 @@ class ProductListViewModel {
             delegate?.reloadViewData()
         }
     }
-    
+
     weak var delegate: ViewModelDelegate?
-    
+
     init(apiService: APIServiceProtocol) {
         self.apiService = apiService
         viewData = ProductListViewData(productItems: [], totalResults: 0, isLoading: false)
     }
-    
+
     func loadPage() {
         guard hasNextPage(), !viewData.isLoading else { return }
         viewData = ProductListViewData(productItems: viewData.productItems, totalResults: viewData.totalResults, isLoading: true)
@@ -47,14 +47,14 @@ class ProductListViewModel {
             }
         }
     }
-    
+
     func viewModelForCell(at index: Int) -> ProductListCellViewModel {
         let item = viewData.productItems[index]
         let itemViewData = ProductListCellViewData(item: item, image: nil, isLoadingImage: false)
         let viewModel = ProductListCellViewModel(viewData: itemViewData, apiService: apiService)
         return viewModel
     }
-    
+
     func didSelectItem(_ index: Int, viewController: UIViewController) {
         let storyboard = UIStoryboard(name: "ProductDetail", bundle: Bundle(for: ProductListViewModel.self))
         guard let detailViewController = storyboard.instantiateViewController(withIdentifier: "ProductDetailViewController") as? ProductDetailViewController else {
@@ -77,7 +77,7 @@ extension ProductListViewModel {
             self.viewData = ProductListViewData(productItems: self.viewData.productItems, totalResults: self.viewData.totalResults, isLoading: false)
         }
     }
-    
+
     private func processNewData(data: Data?) {
         if let results = FeedSearchResults.processNetworkData(data: data) {
             DispatchQueue.main.async {
@@ -88,7 +88,7 @@ extension ProductListViewModel {
             }
         }
     }
-    
+
     private func hasNextPage() -> Bool {
         guard maxPage > 0 else { return true }
         return searchParameters.pageNumber <= maxPage

@@ -10,7 +10,7 @@ import UIKit
 
 struct ProductDetailsProductSpecificationViewData {
     let productDetails: ProductDetails
-    
+
     func productSpecificationItemViewData(from attribute: FeatureAttribute) -> ProductSpecificationItemViewData {
         return ProductSpecificationItemViewData(name: attribute.name, value: attribute.value)
     }
@@ -19,17 +19,17 @@ struct ProductDetailsProductSpecificationViewData {
 class ProductDetailsProductSpecificationView: UIView {
     @IBOutlet private var sectionTitle: UILabel!
     @IBOutlet private var stackView: UIStackView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         xibSetup()
     }
-    
+
     func configure(viewData: ProductDetailsProductSpecificationViewData) {
         for arrangedView in stackView.arrangedSubviews {
             stackView.removeArrangedSubview(arrangedView)
         }
-        
+
         for feature in viewData.productDetails.features {
             for attribute in feature.attributes {
                 let itemView = ProductSpecificationItemView()

@@ -11,12 +11,13 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         customizeAppearance()
         return true
     }
-    
-    // MARK:- App Theme Customization
+
+    // MARK: - App Theme Customization
+
     private func customizeAppearance() {
         window?.tintColor = UIColor.uiTint
         UISearchBar.appearance().barTintColor = UIColor.uiTint
@@ -25,4 +26,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.textDefault]
     }
 }
-

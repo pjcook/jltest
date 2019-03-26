@@ -18,7 +18,7 @@ extension UIView {
         let bundle = Bundle(for: type(of: self))
         xibSetup(nibName: nibName, bundle: bundle)
     }
-    
+
     func xibSetup(nibName: String, bundle: Bundle) {
         backgroundColor = .clear
         let view = loadViewFromNib(nibName: nibName, bundle: bundle)
@@ -30,11 +30,11 @@ extension UIView {
         view.autoresizingMask = UIView.AutoresizingMask.flexibleWidth.union(.flexibleHeight)
         addSubview(view)
     }
-    
+
     func loadViewFromNib(nibName: String, bundle: Bundle) -> UIView {
         let nib = UINib(nibName: nibName, bundle: bundle)
         let objects = nib.instantiate(withOwner: self, options: nil)
-        
+
         // Find first object that is a view (there may be other objects, such as gesture recognizers)
         let views = objects.compactMap { $0 as? UIView }
         guard let view = views.first else {
