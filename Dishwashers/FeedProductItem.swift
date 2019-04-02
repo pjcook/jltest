@@ -19,26 +19,27 @@ struct Price: Codable {
         return numberFormatter.string(from: NSNumber(value: price)) ?? ""
     }
     
-    // If the API returned the data correctly and consistently then the next following would not be required: enum, init(from decoder), processStringValue
     enum CodingKeys: CodingKey {
         case was, now, currency
     }
-    
+
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         was = Price.processStringValue(values: values, forKey: .was)
         now = Price.processStringValue(values: values, forKey: .now)
         currency = Price.processStringValue(values: values, forKey: .currency)
     }
-    
+
+    init(was: String, now: String, currency: String) {
+        self.was = was
+        self.now = now
+        self.currency = currency
+    }
+
     static private func processStringValue(values: KeyedDecodingContainer<Price.CodingKeys>, forKey: KeyedDecodingContainer<Price.CodingKeys>.Key) -> String {
-        if let value = try? values.decode(String.self, forKey: forKey) {
-            return value
-        } else if let value = try? values.decode(Double.self, forKey: forKey) {
-            return String(value)
-        } else if let value = try? values.decode(Float.self, forKey: forKey) {
-            return String(value)
-        } else if let value = try? values.decode(Int.self, forKey: forKey) {
+        if let value = try? values.decode([String:String].self, forKey: forKey) {
+            return value["to"] ?? ""
+        } else if let value = try? values.decode(String.self, forKey: forKey) {
             return String(value)
         }
         return ""
