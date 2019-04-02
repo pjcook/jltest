@@ -37,6 +37,14 @@ class TestData {
 
         return data
     }
+    
+    static func searchComplexPriceValidResponse() -> Data {
+        guard let data = FileLoader.loadTestData(filename: "search-valid-response-complex-price") else {
+            preconditionFailure("Failed to load test data")
+        }
+        
+        return data
+    }
 
     static func productDetailValidResponse() -> Data {
         guard let data = FileLoader.loadTestData(filename: "product-search-response") else {
@@ -63,6 +71,16 @@ class TestDataLoader {
             preconditionFailure("Failed to create FeedSearchResults")
         }
 
+        return results
+    }
+    
+    static func feedSearchResultsComplexPrice() -> FeedSearchResults {
+        let data = TestData.searchComplexPriceValidResponse()
+        
+        guard let results = FeedSearchResults.processNetworkData(data: data) else {
+            preconditionFailure("Failed to create FeedSearchResults")
+        }
+        
         return results
     }
 

@@ -63,6 +63,7 @@
 		D56D9E2D2241517400EB9FC1 /* ImageGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D56D9E2C2241517400EB9FC1 /* ImageGalleryCell.xib */; };
 		D56D9E2F22416B6A00EB9FC1 /* ImageGalleryViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56D9E2E22416B6A00EB9FC1 /* ImageGalleryViewTests.swift */; };
 		D57ED7532253655500ABF7F9 /* CellSizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ED7522253655500ABF7F9 /* CellSizing.swift */; };
+		D57ED7552253CA1800ABF7F9 /* search-valid-response-complex-price.json in Resources */ = {isa = PBXBuildFile; fileRef = D57ED7542253CA1800ABF7F9 /* search-valid-response-complex-price.json */; };
 		D5FF079B2240081600FFEA39 /* product-search-response2.json in Resources */ = {isa = PBXBuildFile; fileRef = D5FF079A2240081600FFEA39 /* product-search-response2.json */; };
 		D5FF079D2240094000FFEA39 /* ImageGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF079C2240094000FFEA39 /* ImageGalleryView.swift */; };
 		D5FF079F22400F7500FFEA39 /* ImageGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF079E22400F7500FFEA39 /* ImageGalleryCell.swift */; };
@@ -152,6 +153,7 @@
 		D56D9E2C2241517400EB9FC1 /* ImageGalleryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageGalleryCell.xib; sourceTree = "<group>"; };
 		D56D9E2E22416B6A00EB9FC1 /* ImageGalleryViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryViewTests.swift; sourceTree = "<group>"; };
 		D57ED7522253655500ABF7F9 /* CellSizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSizing.swift; sourceTree = "<group>"; };
+		D57ED7542253CA1800ABF7F9 /* search-valid-response-complex-price.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "search-valid-response-complex-price.json"; sourceTree = "<group>"; };
 		D5FF079A2240081600FFEA39 /* product-search-response2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "product-search-response2.json"; sourceTree = "<group>"; };
 		D5FF079C2240094000FFEA39 /* ImageGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryView.swift; sourceTree = "<group>"; };
 		D5FF079E22400F7500FFEA39 /* ImageGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryCell.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				D5FF079A2240081600FFEA39 /* product-search-response2.json */,
 				D547B5AB223D09AD00BE6551 /* product-search-invalid-productid-response.json */,
 				D547B5EB223EADA500BE6551 /* TestsBasicViewModel.swift */,
+				D57ED7542253CA1800ABF7F9 /* search-valid-response-complex-price.json */,
 			);
 			name = "Test Data";
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				D547B5AC223D09AD00BE6551 /* product-search-invalid-productid-response.json in Resources */,
 				D547B5AA223CE5D100BE6551 /* search-auth-error-response.json in Resources */,
 				D547B5B8223D139100BE6551 /* single-feed-product.json in Resources */,
+				D57ED7552253CA1800ABF7F9 /* search-valid-response-complex-price.json in Resources */,
 				D56D9E2D2241517400EB9FC1 /* ImageGalleryCell.xib in Resources */,
 				D547B5E6223DF82400BE6551 /* ProductListCell.xib in Resources */,
 				D5FF079B2240081600FFEA39 /* product-search-response2.json in Resources */,

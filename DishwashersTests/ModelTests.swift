@@ -69,6 +69,21 @@ extension ModelTests {
         XCTAssertEqual("660.00", product.price.now)
         XCTAssertEqual("GBP", product.price.currency)
     }
+    
+    func test_parse_feedSearchResults_data_with_complex_price() {
+        let searchResults = TestDataLoader.feedSearchResultsComplexPrice()
+        XCTAssertEqual(188, searchResults.results)
+        XCTAssertEqual(10, searchResults.pagesAvailable)
+        XCTAssertEqual(20, searchResults.products.count)
+        
+        let product = searchResults.products.first!
+        XCTAssertEqual("1391191", product.productId)
+        XCTAssertEqual("Indesit DIF 04B1 Ecotime Fully Integrated Dishwasher, White", product.title)
+        XCTAssertEqual("//johnlewis.scene7.com/is/image/JohnLewis/233326789?", product.image)
+        XCTAssertEqual("", product.price.was)
+        XCTAssertEqual("220.00", product.price.now)
+        XCTAssertEqual("GBP", product.price.currency)
+    }
 }
 
 // MARK: - ProductItem tests
@@ -84,7 +99,7 @@ extension ModelTests {
         let result = ProductItem.processNetworkData(data: data)
         XCTAssertNil(result)
     }
-
+    
     func test_parse_productItem_data() {
         let product = TestDataLoader.validProductItem()
 
