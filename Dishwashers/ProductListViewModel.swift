@@ -80,6 +80,8 @@ extension ProductListViewModel {
                 let totalResults = results.results
                 self.viewData = ProductListViewData(productItems: products, totalResults: totalResults, isLoading: false)
             }
+        } else {
+            print("Cannot parse data")
         }
     }
 
